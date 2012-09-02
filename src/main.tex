@@ -1,0 +1,89 @@
+
+\documentclass[oneside]{memoir}
+
+\renewcommand{\chaptername}{Task}
+
+\usepackage{times}
+
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large\bfseries}{Task \thesection}{1em}{}
+
+\usepackage{url}
+\usepackage{hyperref}
+
+\usepackage{graphicx}
+\graphicspath{{../fig/}}
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{lightblue}{rgb}{0.95,0.95,1}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{
+  basicstyle=\ttfamily\small,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=2, 
+  numbersep=5pt,
+  backgroundcolor=\color{lightblue},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  frame=lines,
+  rulecolor=\color{black},
+  tabsize=2,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  title=\lstname,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  escapeinside={\%*}{*)},
+  morekeywords={*,...},
+}
+
+\definecolor{shadecolor}{gray}{0.9}
+
+\newenvironment{qa}
+{\begin{shaded}\begin{itemize}}
+{\end{itemize}\end{shaded}}
+
+\title{{\bfseries 11-791 Design and Engineering of Intelligent Information System Fall 2012\\Homework 0}\\
+\vspace{1em}
+\itshape\rmfamily Software installation, configuration, and your first Maven project hosted on GitHub}
+
+\date{}
+\begin{document}
+
+\begin{titlingpage}
+\maketitle
+
+\vspace{-5em}
+\textbf{Important dates}
+\begin{itemize}
+\item \textbf{Hand out: September 2.}
+\item \textbf{Turn in: September 16.} A bash script will automatically collect your submissions and execute your latest release (e.g., hw0-ID-0.0.1.jar) on our maven repository. The output from your jar will be compared with our expected output. Simply copy the code from the guideline will do the work!
+\end{itemize}
+
+\textbf{Useful information}
+\begin{enumerate}
+\item We suggest you to start Homework 0 as early as possible.
+\item As you'll see at the beginning of Task 2, that installation of the same software on different platforms differs a lot, we have thus created three forums for you to discuss Windows/Linux/Mac platform related issues. We will try our best to help you solve whatever problems you might have, but we also encourage you, the experts in any of these platforms, to work with us to answer the questions from your classmates. You can find the discussion boards at \url{http://blackboard.andrew.cmu.edu}. Plus, you might find Google is also a good place to raise your concerns and find answers.
+\item For any question regarding Homework 0, you could send mails to us, Zi Yang (\href{mailto:ziy@cs.cmu.edu}{\nolinkurl{ziy@cs.cmu.edu}}) or Rui Liu (\href{mailto:ruil@cs.cmu.edu}{\nolinkurl{ruil@cs.cmu.edu}}).
+\item Both source files and derived pdf file of this tutorial are publicly available (yes, \emph{open source}!) on my GitHub
+
+\url{http://github.com/ziy/software-engineering-preliminary})
+
+which means if you find any errors or easier ways to achieve the same goal, please feel free to fork the project and send a pull request back to me.\footnote{Details about pull requests can be found at \url{http://help.github.com/articles/using-pull-requests}.} Once your request is confirmed, a newer version will come out immediately to help other students!
+\end{enumerate}
+\end{titlingpage}
+
+\input{account/intro}
+
+\input{config/intro}
+
+\input{project/intro}
+
+\end{document}

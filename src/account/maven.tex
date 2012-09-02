@@ -1,0 +1,26 @@
+
+\section{Knowing what Maven is}
+
+If you are a Maven expert, you could skip this task.
+
+Maven\footnote{\url{http://maven.apache.org/}} is a build automation tool typically used for Java projects\footnote{\url{http://en.wikipedia.org/wiki/Apache_Maven}}, but can also work for many other programming languages. If you have experience in programming in C/C++, or have built C/C++ projects of someone else, then you must be familiar with Make\footnote{\url{http://en.wikipedia.org/wiki/Make_(software)}}, or if you are a Java programmer, then Ant\footnote{\url{http://ant.apache.org/}} might be one of your everyday tools. They all belong to build automation tool.
+
+If you are familiar with none of those, then you should learn what build automation tool is. From Wikipedia, build automation is defined as:
+
+\begin{quote}
+\emph{Build automation is the act of scripting or automating a wide variety of tasks that software developers do in their day-to-day activities including things like: compiling computer source code into binary code, packaging binary code, running tests,deployment to production systems, creating documentation and/or release notes.}
+\end{quote}
+
+For example, you want to clean your project before you rebuild it, and then you want to add all the dependencies into the build path, plus you also want to include other non-jar dependencies (e.g., configuration files) during building the jar by first copying them into the build directory. In addition, you want a tool to automatically run a set of tests to make sure it is still consistent with previous builds. What you need is a build automation tool, and a configuration file specifying a set of tasks for a build, like Maven, but Maven is more than that. (There are many articles to compare different build automation tools, especially between Maven and Ant, which you might be interested to read.) To better understand Maven, you should first read the Maven about page at \url{http://maven.apache.org/what-is-maven.html}, and then take a look at the feature page at \url{http://maven.apache.org/maven-features.html}.
+
+Most important concepts in Maven for this course are:
+
+\begin{center}
+\textbf{pom (Project Object Model), plugin, goal, artifact, repository, central repository, project repository, local repository, archetype}
+\end{center}
+
+Informally, \emph{POM} can be considered as the configuration file for those tasks during building the jar, \emph{plugin} is the tool to help you achieve each of your tasks, and \emph{goals} are the set of predefined tasks you might need from many best practices in software engineering. \emph{Artifacts} can be thought as the output (simplified as jars) when the build is done, and \emph{repositories} are the place where those jars are storing, just like a warehouse of jars. \emph{Central repository} is a global ``supreme'' repository (but of course distributed all over the world with many mirror sites). Formal definitions for these concepts can be found in the documentation of Maven at \url{http://maven.apache.org/guides/index.html}. We highly recommend you to go through all the topics in the documentation, especially the article entitled ``Getting Started in 30 Minutes''.
+
+\section{Being notified about your account on our Maven repository}
+
+We will collect your submissions for Homework 0 and all the following homeworks on our Maven repository. We will notify each of you of your password, and your Maven ID will be your Andrew ID. Please let us know if you haven't received your password by September 5. 
