@@ -1,0 +1,104 @@
+
+\chapter{Release to Maven}
+
+In the last task, you will need to submit your Java code by performing a release of your code. But remember that Maven release plug-in will check if all the changes you have made have been checked into the remote repository (i.e. GitHub in our case). So, let's perform a git-commit and a git-push.
+
+\begin{enumerate}
+
+\begin{figure}
+\hspace{-1em}
+\begin{minipage}{0.5\textwidth}
+\centering
+\includegraphics[scale=0.3]{simple-code-05-commit}
+\caption{Performing a git-commit/push before preparing a release\label{simple-code-05-commit}}
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+\centering
+\includegraphics[scale=0.3]{submit-01-preference}
+\caption{Starting to add an external Maven executable\label{submit-01-preference}}
+\end{minipage}
+\hspace{-1em}
+\end{figure}
+
+\item Similar to what you did earlier, you execute git-commit and git-push to the project, and you could see the ``greater than'' symbol disappears and a ``master'' label is attached to project path, which means you are successful with your git-commit and git-push.
+
+\begin{figure}
+\hspace{-2em}
+\begin{minipage}{0.5\textwidth}
+\centering
+\includegraphics[scale=0.3]{submit-02-add-maven}
+\caption{Adding another Maven executable\label{submit-02-add-maven}}
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+\centering
+\includegraphics[scale=0.3]{submit-03-add-maven-done}
+\caption{Viewing the added external Maven\label{submit-03-add-maven-done}}
+\end{minipage}
+\hspace{-2em}
+\end{figure}
+
+\item Sometimes, the embedded Maven runtime from m2e cannot be succesfully executed to perform a release goal. Therefore, we should add the externally installed Maven runtime into the Eclipse. Click \textbf{Window} (or \textbf{Edit}) $\rightarrow$ \textbf{Preferences} (see Figure \ref{submit-03-add-maven-done}).
+\item Select \textbf{Maven} $\rightarrow$ \textbf{Installations}. You will see the ``Embedded'' runtime (as shown in Figure \ref{submit-02-add-maven}). Click \textbf{Add\ldots} to locate the installation path of your Maven runtime.
+\item Then, you could see an ``External'' runtime in the installation lists. See Figure \ref{submit-03-add-maven-done}.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{submit-04-run-config}
+\caption{Getting ready for a release\label{submit-04-run-config}}
+\end{figure}
+
+\item Now you can execute a Maven goal within Eclipse (of course, you can also do that outside Eclipse from command line). Click the down-arrow next to the \textbf{Run} button, and select \textbf{Run Configurations\ldots}. See Figure \ref{submit-04-run-config}.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{submit-05-run-config-done}
+\caption{Configuring Maven goal\label{submit-05-run-config-done}}
+\end{figure}
+
+\item In the ``Run Configurations'' window, double-click \textbf{Maven Build} to create a new Maven goal. See Figure \ref{submit-05-run-config-done}. Rename your run configuration name as ``release'' (optional), and click \textbf{Browse Workspace\ldots} to select your project, and type in your goals as follows:
+
+\begin{verbatim}
+release:prepare release:perform
+\end{verbatim}
+
+This actually defines two goals ``release:prepare'' and ``release:perform''. As you will probably encounter tons of errors during this step, we should review some details of the Maven release.
+
+The Maven guide\footnote{\url{https://maven.apache.org/guides/mini/guide-releasing.html}} tells us what is happening behind these two goals:
+
+\begin{quote}
+The release:prepare goal will:
+
+\begin{enumerate}
+\item Verify that there are no uncommitted changes in the workspace.
+\item Prompt the user for the desired tag, release and development version names.
+\item Modify and commit release information into the pom.xml file.
+\item Tag the entire project source tree with the new tag name.
+\end{enumerate}
+
+The release:perform goal will:
+
+\begin{enumerate}
+\item Extract file revisions versioned under the new tag name.
+\item Execute the maven build lifecycle on the extracted instance of the project.
+\item Deploy the versioned artifacts to appropriate local and remote repositories.
+\end{enumerate}
+\end{quote}
+
+If the goals are not executed sucessfully, a relatively useful message will be printed out to console to help you discover where the problem is.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{submit-06-release}
+\caption{A successful release!\label{submit-06-release}}
+\end{figure}
+
+\item Finally after you fixed all the problems (if any), you could see the very pleasant ``BUILD SUCCESS'' message in the console (as shown in Figure \ref{submit-06-release}), which means you've done with your Homework 0! Congratulations!
+
+\begin{qa}
+\item[Q1] What if I find some bugs after it has been released? How can I resubmit my code?
+\item[A1] You can look at the ``Overview'' tab in the Maven POM Editor for your pom.xml file. The version should be ``0.0.2-SNAPSHOT'', which indicates a previous version has been generated. Now, you could redo this task (git-commit, git-push, run Maven goals) to release the version 0.0.2. We will evaluate your code based on the latest release.
+\end{qa}
+
+\end{enumerate}

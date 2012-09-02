@@ -1,0 +1,23 @@
+
+\section{Installing JDK}
+
+If you have the latest JDK 6 installed\footnote{You should check out the latest version at \url{http://www.oracle.com/technetwork/java/javase/downloads/index.html} as the version number grows really fast}, you could skip this task.
+
+We assume you have experience in Java programming, but we still need to clarify the Java environment for the course. If you don't have any Java experience, probably you need to look for a Java textbook. It might also be fine if you think you have tons of experience in programming in C++/C\# and you feel confident to learn Java by just reading others' codes and guessing their meanings. It's up to you!
+
+\begin{enumerate}
+\item Visit \url{http://www.oracle.com/technetwork/java/javase/downloads/index.html}, and choose the platform you are using to download JDK 6 SE 35\footnote{By the date of August 31, 2012}.
+
+\begin{qa}
+\item[Q1] Can I just install JRE instead of JDK?
+\item[A1] No.
+\item[Q2] Can I install OpenJDK instead of SunJDK (or OracleJDK)?
+\item[A2] Sure, you can. But be aware that sometimes only binary files (aka JRE) are installed under a folder named \texttt{openjdk-\emph{version}}, rather than \texttt{openjre-\emph{version}}, which is a bit confusing.
+\item[Q3] Can I install JDK 7, 5 or older versions?
+\item[A3] You are not recommended to install JDK 7, since you have to modify the Maven pom file to compile your project, and the cluster that we will run and test your components does not have JDK 7 set up yet. But it would be fine (theoretically) if you have just JDK 5 installed, but it is still not recommended. Versions older than 5 should be completely avoided.
+\item[Q4] Can I use an earlier version of JDK 6 (e.g., 6u4)?
+\item[A4] It may not put you in a trouble most of time, but in some rare cases, we did find an exception was thrown due to a bug not in our code but in the runtime environment. Therefore, we recommend you to upgrade your JDK 6 to the latest version.
+\end{qa}
+
+\item Install JDK from the executable file if available, and set PATH manually (if you are using a Windows machine). The Java installation page (at \url{http://www.oracle.com/technetwork/java/javase/index-137561.html}) might be useful to you.
+\end{enumerate}
