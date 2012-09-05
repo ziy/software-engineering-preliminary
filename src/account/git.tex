@@ -52,7 +52,7 @@ In this task, you are required to register an account at GitHub and create a pub
 \end{qa}
 
 \begin{enumerate}
-\item Registration is easy, but you will need to generate an SSH key and add that to your GitHub account. This is a platform specific task, and we suggest you to refer to the help page at \url{http://help.github.com/articles/generating-ssh-keys}. Note that if you are using a Windows machine, you will need a Git Bash to run the commands.
+\item Registration is easy, but you will need to generate an SSH key and add that to your GitHub account. This is a platform specific task, and we suggest you to refer to the help page at \url{http://help.github.com/articles/generating-ssh-keys}. Note that if you are using a Windows machine, you will need a Git Bash to run the commands, and it would be better not using a passphrase when generating the public key, or the project will stuck at release because Eclipse is waiting for a passphrase but it doesn't prompt us to do that.\footnote{Reported by Hector Liu.}
 
 \begin{qa}
 \item[Q1] What is SSH? What is a public key? Why do I need that?
