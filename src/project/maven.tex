@@ -1,5 +1,5 @@
 
-\chapter{Release to Maven}
+\section{Performing a Maven Release}
 
 In the last task, you will need to submit your Java code by performing a release of your code. But remember that Maven release plug-in will check if all the changes you have made have been checked into the remote repository (i.e. GitHub in our case). So, let's perform a git-commit and a git-push.
 
@@ -101,6 +101,10 @@ If the goals are not executed sucessfully, a relatively useful message will be p
 \item[A1] A successful ``prepare'' with an unsuccessful ``perform'' always leads to a very subtle situation. Sometimes, you can try to execute a ``release:rollback'' Maven goal to revert to the previous status, or you are try to manually delete the \verb|release.properties| file under your project diretory, and make sure you are now working on a SNAPSHOT version. (You can check your version from Maven POM Editor, and you have an opened Maven POM Editor, be sure to close it and open it again since it will not be automatically refreshed after you execute a Maven goal.) If it is no longer a SNAPSHOT version, you should modify the \textbf{Version} field to something like ``0.0.2-SNAPSHOT'' (without quotes). You might want to refer to \url{http://maven.apache.org/guides/mini/guide-releasing.html} about the details of the release process.
 \item[Q2] What if I find some bugs after it has been released? How can I resubmit my code?
 \item[A2] You can look at the ``Overview'' tab in the Maven POM Editor for your pom.xml file. The version should be ``0.0.2-SNAPSHOT'', which indicates a previous version has been generated. Now, you could redo this task (git-commit, git-push, run Maven goals) to release the version 0.0.2. We will evaluate your code based on the latest release.
+\item[Q3] How could I check if my submission is successful?
+\item[A3] First of all, don't worry about it, even if by the deadline, we haven't received your submission, we will notify you, and help you check what the problem may be before you start Homework 1.
+
+If you want to check your submission, you can go to \url{http://mu.lti.cs.cmu.edu:8081/nexus/index.html} back again, and log in with your password, go to \textbf{View/Repositories} $\rightarrow$ \textbf{Repositories} on the left, then click \textbf{Course Releases} on the right, unfold directories along the groupId path, and if you see your artifact at the end, then you've done!
 \end{qa}
 
 \end{enumerate}
