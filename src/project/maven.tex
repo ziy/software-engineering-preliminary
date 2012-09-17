@@ -99,10 +99,18 @@ If the goals are not executed sucessfully, a relatively useful message will be p
 \begin{qa}
 \item[Q1] The ``release:prepare'' goal could be executed successfully, but there was an error during ``release:perform''. How can I start all over again?\footnote{Reported by Kartik Mandaville.}
 \item[A1] A successful ``prepare'' with an unsuccessful ``perform'' always leads to a very subtle situation. Sometimes, you can try to execute a ``release:rollback'' Maven goal to revert to the previous status, or you are try to manually delete the \verb|release.properties| file under your project diretory, and make sure you are now working on a SNAPSHOT version. (You can check your version from Maven POM Editor, and you have an opened Maven POM Editor, be sure to close it and open it again since it will not be automatically refreshed after you execute a Maven goal.) If it is no longer a SNAPSHOT version, you should modify the \textbf{Version} field to something like ``0.0.2-SNAPSHOT'' (without quotes). You might want to refer to \url{http://maven.apache.org/guides/mini/guide-releasing.html} about the details of the release process.
-\item[Q2] What if I find some bugs after it has been released? How can I resubmit my code?
-\item[A2] You can look at the ``Overview'' tab in the Maven POM Editor for your pom.xml file. The version should be ``0.0.2-SNAPSHOT'', which indicates a previous version has been generated. Now, you could redo this task (git-commit, git-push, run Maven goals) to release the version 0.0.2. We will evaluate your code based on the latest release.
-\item[Q3] How could I check if my submission is successful?
-\item[A3] First of all, don't worry about it, even if by the deadline, we haven't received your submission, we will notify you, and help you check what the problem may be before you start Homework 1.
+\item[Q2] The process hangs forever during Maven ``release:prepare'' executing a ``git push'' command, in other words, it doesn't terminate or produce any further useful information. What should I do?
+\item[A2] We are sure there is some bug with the plugin related to this issue. But there still some workarounds to consider.
+\begin{enumerate}
+\item If you generate a public key with a passphrase (i.e., you typed in something before you pressed \textbf{Enter}), then try to regenerate another public key following the same instruction and paste it to GitHub.
+\item Try to log back into GitHub to see if your email address has been verified.
+\item Turn to command line to execute Maven goal by typing \verb|mvn release:prepare release:perform| from the project directory to see if it terminates automatically or still hangs there forever.
+\item Try to find the last command in the log message shown in the console (e.g., \verb|git push ... master:master|), and directly type in the same command in the command line to see if additional verification (e.g., adding a host to \verb|known_host| list) is required.
+\end{enumerate}
+\item[Q3] What if I find some bugs after it has been released? How can I resubmit my code?
+\item[A3] You can look at the ``Overview'' tab in the Maven POM Editor for your pom.xml file. The version should be ``0.0.2-SNAPSHOT'', which indicates a previous version has been generated. Now, you could redo this task (git-commit, git-push, run Maven goals) to release the version 0.0.2. We will evaluate your code based on the latest release.
+\item[Q4] How could I check if my submission is successful?
+\item[A4] First of all, don't worry about it, even if by the deadline, we haven't received your submission, we will notify you, and help you check what the problem may be before you start Homework 1.
 
 If you want to check your submission, you can go to \url{http://mu.lti.cs.cmu.edu:8081/nexus/index.html} back again, and log in with your password, go to \textbf{View/Repositories} $\rightarrow$ \textbf{Repositories} on the left, then click \textbf{Course Releases} on the right, unfold directories along the groupId path, and if you see your artifact at the end, then you've done!
 \end{qa}
