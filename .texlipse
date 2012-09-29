@@ -1,14 +1,14 @@
 #TeXlipse project settings
-#Thu Aug 30 14:10:11 EDT 2012
+#Fri Sep 28 21:42:35 EDT 2012
 markTmpDer=true
 builderNum=2
-outputDir=build/
+outputDir=build/git-and-maven
 makeIndSty=
 bibrefDir=
 outputFormat=pdf
 tempDir=tmp
-mainTexFile=main.tex
+mainTexFile=git-and-maven/main.tex
 outputFile=main.pdf
 langSpell=en
 markDer=true
-srcDir=src/
+srcDir=src

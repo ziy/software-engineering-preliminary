@@ -17,7 +17,7 @@
 \usepackage{hyperref}
 
 \usepackage{graphicx}
-\graphicspath{{../fig/}}
+\graphicspath{{../../fig/git-and-maven/}}
 
 \usepackage{listings}
 \usepackage{color}
@@ -48,6 +48,28 @@
   escapeinside={\%*}{*)},
   morekeywords={*,...},
 }
+\usepackage{letltxmacro}
+\makeatletter
+\LetLtxMacro\@@lst@inputlisting\lst@inputlisting
+\renewcommand\lst@inputlisting[2][]{%
+  \try@listingspath{#2}%
+  \if@tempswa
+    \typeout{Using \@foundlisting}%
+    \@@lst@inputlisting[#1]{\@foundlisting}%
+  \else
+    \typeout{Missing file #2}\endgroup
+  \fi}
+\def\listingspath#1{\def\@listingspath{#1}}
+\listingspath{}
+\def\try@listingspath#1{%
+  \@tempswafalse
+  \expandafter\@tfor\expandafter\next
+  \expandafter:\expandafter=\@listingspath\do
+  {\if@tempswa\@break@tfor\fi
+   \IfFileExists{\next/#1}{\@tempswatrue\xdef\@foundlisting{\next/#1}}{}}%
+}
+\makeatletter
+\listingspath{{../../lst/git-and-maven/}}
 
 \definecolor{shadecolor}{gray}{0.9}
 
