@@ -2,12 +2,12 @@
 #Fri Sep 28 21:42:35 EDT 2012
 markTmpDer=true
 builderNum=2
-outputDir=build/git-and-maven
+outputDir=build/uml-and-uima
 makeIndSty=
 bibrefDir=
 outputFormat=pdf
 tempDir=tmp
-mainTexFile=git-and-maven/main.tex
+mainTexFile=uml-and-uima/main.tex
 outputFile=main.pdf
 langSpell=en
 markDer=true

@@ -1,0 +1,222 @@
+% 
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0
+% Unported License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/3.0/.
+%
+% author: Zi Yang <ziy@cs.cmu.edu>
+% date: 09/02/2012
+%
+\documentclass[oneside]{memoir}
+
+\renewcommand{\chaptername}{Task}
+
+\usepackage{times}
+
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large\bfseries}{Task \thesection}{1em}{}
+
+\usepackage{url}
+\usepackage{hyperref}
+
+\usepackage{graphicx}
+\graphicspath{{../../fig/uml-and-uima/}}
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{lightblue}{rgb}{0.95,0.95,1}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{
+  basicstyle=\ttfamily\small,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=2, 
+  numbersep=5pt,
+  backgroundcolor=\color{lightblue},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  frame=lines,
+  rulecolor=\color{black},
+  tabsize=2,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  title=\lstname,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  escapeinside={\%*}{*)},
+  morekeywords={*,...},
+}
+\usepackage{letltxmacro}
+\makeatletter
+\LetLtxMacro\@@lst@inputlisting\lst@inputlisting
+\renewcommand\lst@inputlisting[2][]{%
+  \try@listingspath{#2}%
+  \if@tempswa
+    \typeout{Using \@foundlisting}%
+    \@@lst@inputlisting[#1]{\@foundlisting}%
+  \else
+    \typeout{Missing file #2}\endgroup
+  \fi}
+\def\listingspath#1{\def\@listingspath{#1}}
+\listingspath{}
+\def\try@listingspath#1{%
+  \@tempswafalse
+  \expandafter\@tfor\expandafter\next
+  \expandafter:\expandafter=\@listingspath\do
+  {\if@tempswa\@break@tfor\fi
+   \IfFileExists{\next/#1}{\@tempswatrue\xdef\@foundlisting{\next/#1}}{}}%
+}
+\makeatletter
+\listingspath{{../../lst/uml-and-uima/}}
+
+\definecolor{shadecolor}{gray}{0.9}
+
+\newenvironment{qa}
+{\begin{shaded}\begin{itemize}}
+{\end{itemize}\end{shaded}}
+
+\title{{\bfseries 11-791 Design and Engineering of Intelligent Information
+System Fall 2012\\Homework 1}\\
+\vspace{1em}
+\itshape\rmfamily UML Design and Name Entity Recognition Implementation with
+UIMA SDK}
+
+\date{}
+
+\begin{document}
+
+\begin{titlingpage}
+\maketitle
+
+\hspace{-0.1\textwidth}
+\begin{minipage}{1.2\textwidth}
+\vspace{-5em}
+\textbf{Important dates}
+\begin{itemize}
+
+\item \textbf{Hand out: October 1.}\footnote{This version was built on September
+28, 2012}
+
+\item \textbf{Turn in: October 15.} Besides all your Java source codes, and UIMA
+type system, collection reader and analysis engine descriptors, which are
+essential to your UIMA collection processing engine, you are also required to
+answer a set of UML design related problems, write a report for your
+implementation of the name entity recognizer, and include the Javadocs generated
+from your source codes.
+
+If you have ever looked into your \verb|target/| directory or Maven
+course-release repository for Homework 0, then you will find that Maven will
+package the binary files, source files, and Javadocs into different jars, and
+deploy them on the server, which means all you need to do is to put all the
+source codes and descriptors, as well as the documents, in the right place of
+your hw1-ID project. You should organize your project in the same hierachy as
+shown below\footnote{To simply your submission process and our evaluation
+process, we ask you to create \texttt{src/main/resources/docs} for your
+documents. But you should keep in mind it is NOT a good pratice to have
+documentation within a \texttt{src} folder.}:
+
+\begin{verbatim}
+hw1-ID
+|- pom.xml
+\- src
+   \- main
+      |- java
+    |    \- **/*.java   // your Java codes go into this folder 
+    |                  // as you did before
+      \- resources
+         |- **/*.xmi    // all your descriptors go into the 
+         |              // resources folder
+         \- docs
+            |- hw1-ID-uml.pdf    // your UML design writeup
+            \- hw1-ID-report.pdf // your report for the pipeline
+\end{verbatim}
+
+\end{itemize}
+
+\end{minipage}
+\hspace{-0.1\textwidth}
+\end{titlingpage}
+
+\hspace{-0.1\textwidth}
+\begin{minipage}{1.2\textwidth}
+
+Several notes about organizing your Maven project and other additional
+information:
+
+\begin{enumerate}
+
+\item \textbf{Submission:} The same way as you did for Homework 0 (set up GitHub
+repo, create Maven project, write your code, submit to Maven repo!), except that
+the name has changed to hw1-ID from hw0-ID.
+
+\item \textbf{Your source files and descriptors:} \verb|**/*.java| and
+\verb|**/*.xmi| tell you that you don't need to flaten your folder hierachy,
+instead we encourage you to place your Java codes in the right package, and
+similarly, you can create subfolders for different types of descriptors, e.g.,
+\verb|src\main\resources\descriptors\ner| for all the analysis engine
+descriptors name related entity recognition task. We will look into your jar
+package.
+
+\item \textbf{UML design answers and report:} We will pull out your documents
+from your jar files, and Prof. Eric Nyberg will look into your report and
+answers for the questions, so that remember to include your ID as part of file
+names, and we highly encourage you to submit only PDF documents.
+
+\item \textbf{Javadocs:} Please refer to any best pratise (yes, there might be
+more than one) to write your Javadoc, e.g.,
+\url{http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html}.
+We expect you to describe your major components at the class level of your
+Javadoc, and put additional comments on the most important methods if any. It
+might be a good idea to include your UML design in your Javadoc if you think the
+developers can have a general idea by just looking at your diagram.
+
+\item \textbf{Performance evaluation:} We believe you may have different ideas
+about how to design the type system, and how to implement a name entity
+recognizer, which means we won't have a shared type system to test your
+components (but we will have one in Homework 2). Therefore, you are required to
+write a collection reader to load the input text and a CAS consumer to generate
+your output (both are independent of your specific type system), and our
+evaluation will based on the output from your CAS consumer, similar as we did
+for Homework 0.
+
+\end{enumerate}
+
+\textbf{Useful information}
+\begin{enumerate}
+\item We encourage you to start Homework 1 as early as possible, especially if
+you haven't done the reading assignments for UIMA Specification, SDK, or even
+haven't had a chance to browse the UIMA portal.
+
+\item For any question regarding the UML design part of Homework 1, please send
+mails directly to Prof. Eric Nyberg
+(\href{mailto:ehn@cs.cmu.edu}{\nolinkurl{ehn@cs.cmu.edu}}), and for other
+questions, please send us mails: Zi Yang
+(\href{mailto:ziy@cs.cmu.edu}{\nolinkurl{ziy@cs.cmu.edu}}) or Rui Liu
+(\href{mailto:ruil@cs.cmu.edu}{\nolinkurl{ruil@cs.cmu.edu}}).
+
+\item Again, both source files and derived pdf file of this assignment are
+publicly available on my GitHub
+
+\url{http://github.com/ziy/software-engineering-preliminary}
+
+Please feel free to fork the project and send a pull request back to me as some
+of you did for Homework 0 for any error. Or you can just report an issue at
+
+\url{http://github.com/ziy/software-engineering-preliminary/issues}
+
+\end{enumerate}
+
+\end{minipage}
+\hspace{-0.1\textwidth}
+
+% \input{account/intro}
+
+% \input{config/intro}
+
+% \input{project/intro}
+
+\end{document}
