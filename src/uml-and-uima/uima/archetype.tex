@@ -1,0 +1,144 @@
+
+\section{Creating Maven project from the archetype}
+
+For this task, we have created an archetype for you to base on, which means you
+don't need to manually input shared information, e.g., configurations for the
+Maven repositories, compile plug-in, etc. The tutorial for Homework 0 might also
+be helpful for you when you are creating a Maven project.
+
+\begin{enumerate}
+
+\item The first thing you should do is to inform m2e where to find the
+archetypes. Open your Eclipse's \textbf{Preferences} window, and navigate to
+\textbf{Maven} $\rightarrow$ \textbf{Archetypes}, and click \textbf{Add Remote
+Catlog\ldots}. (See Figure \ref{fig:archetype-01-catalog})
+
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.3]{archetype-01-catalog}
+\caption{Configuring Maven catalog\label{fig:archetype-01-catalog}}
+\end{figure}
+
+\item Type the following URL into the \textbf{Catalog File} field with ID and
+PASSWORD being your Andrew ID and Maven repository password.
+
+\begin{verbatim}
+http://ID:PASSWORD@mu.lti.cs.cmu.edu:8081/nexus/content/
+groups/course/archetype-catalog.xml 
+\end{verbatim}
+
+Due to page width limitation, the URL is split into two lines. Be aware that
+when you copy the above two lines into the text field, a space might replace the
+line break, so don't forget to space remove the space between \verb|content/|
+and \verb|groups|.
+
+Optionally, you can add a \textbf{Description} for this catalog, for example
+``Course Catalog''. See Figure \ref{fig:archetype-02-add}. Then click
+\textbf{OK} on the \textbf{Remote Archetype Catalog} window and another
+\textbf{OK} on the \textbf{Preferences} window.
+
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.3]{archetype-02-add}
+\caption{Adding a remote catalog\label{fig:archetype-02-add}}
+\end{figure}
+
+\item Now you can follow almost the same steps to create a Maven project hosted
+on GitHub, you can refer to Homework 0 to find out how to create an empty
+project on GitHub, and how the project can be imported to Eclipse. Since we have
+created the archetype for you, remember to unselect \textbf{Create a simple
+project (skip archetype selction)} (see Figure \ref{fig:archetype-03-new}). Then
+click \textbf{Next}.
+ 
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.3]{archetype-03-new}
+\caption{Unselecting Create a simple project\label{fig:archetype-03-new}}
+\end{figure}
+
+\item Here you can select ``Course Catalog'' (or other names you specified in
+the previous step) or ``All Catalogs'' in the drop-down menu for
+\textbf{Catalog}. Then, type in ``hw1-archetype'' (without quotes) in the \textbf{Filter}
+field. While you are typing, you will find the progress bar indicates you that
+it is busy ``Retrieving archetypes''. Select the archetype listed below, and
+click next to continue. See Figure \ref{fig:archetype-04-filter}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.3]{archetype-04-filter}
+\caption{Filtering the archetype you want to base on\label{fig:archetype-04-filter}}
+\end{figure}
+
+\item In the next window, you are asked to specify the \textbf{Group Id} and
+\textbf{Artifact Id}. Similar to Homework 0, the Group Id is
+
+\begin{center}
+\textbf{edu.cmu.lti.11791.f12.hw1}
+\end{center}
+
+and Artifact Id is
+
+\begin{center}
+\textbf{hw1-ID}
+\end{center}
+
+with ID being your Andrew Id. Then click \textbf{Finish}. See Figure
+\ref{fig:archetype-05-param}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.3]{archetype-05-param}
+\caption{Specifying artifact parameters\label{fig:archetype-05-param}}
+\end{figure}
+
+\item Now you have a new Maven project created from the archetype, which means
+there will be no extra steps to manually edit the pom.xml file on your own.
+Instead the archetype includes most information Maven needs to execute goals.
+
+The only information that Maven doesn't know about from archetype or the
+information we have typed to create the project is SCM. You should edit the
+\texttt{pom.xml} file to type in the SCM information of your GitHub repository
+for Homework 1 as you did in Homework 0.
+
+\end{enumerate}
+
+You can see that we have included
+
+\begin{itemize}
+
+\item two java files in the \texttt{src/main/java} folder:
+\texttt{PosTagNamedEntityRecognizer.java}, which includes the algorithm that
+extracts name entities based on part-of-speech tags, and a
+\texttt{SimpleRunCPE.java}, copied from uima-examples package, which you can use
+as an entry point to test your CPE.
+
+\item and two files in the \texttt{src/main/resources/data} folder,
+\texttt{sample.in} and \texttt{sample.out}, which correspond to the sample input
+file and the sample output file, and you can also use them to train your model
+if you are trying to use a supervised approach.
+
+\item the \texttt{pom.xml}. You can go to the \textbf{Dependencies} tab after
+you double-click the pom file, and you will be able to see all the UIMA SDK
+packages have been added to your Maven project by the archetype, and they will
+be stored on your local Maven repository (e.g., \texttt{~/.m2/repositories}).
+You will not need to follow the official instruction to uncompressed the SDK
+package and specify the \verb|UIMA_HOME| as your environment parameter unless
+you want to execute a UIMA program outside your project.
+
+\end{itemize}
+
+Your implementation starts here.
+
+\begin{qa}
+
+\item[Q1] I found a bug in the archetype and I know how to fix it. How should I
+proceed to patch the archetype to help many others who may suffer from this? 
+
+\item[A1] The archetype project is also hosted on GitHub at
+\url{https://github.com/ziy/hw1-archetype}, and you can send a pull request to
+me regarding any issue.
+
+\end{qa}
+
+
+
