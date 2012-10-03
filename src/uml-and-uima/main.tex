@@ -166,16 +166,16 @@ similarly, you can create subfolders for different types of descriptors, e.g.,
 descriptors related to named entity recognition task. We will look into your jar
 packages.
 
-One very special descriptor is your \verb|CpeDescriptor.xml|, where is the entry
-point for the entire pipeline, which means you are required to name your CPE
-descriptor exactly the same way, and place it in the right place for us to
-evaluate your code.
+One very special descriptor is the \verb|CpeDescriptor.xml|, which is the entry
+point for the entire pipeline. You are required to name your CPE descriptor
+exactly the same way, and place it in the right place for us to evaluate your
+code.
 
 \item \textbf{UML design answers and report:} We will pull out your documents
 from your jar files, and Prof. Eric Nyberg will look into your report and
 answers for the questions, so that remember to include your ID as part of file
 names, and put your name and ID in your document. You can submit either PDF
-files or DOC/DOCX files.
+files or DOC/DOCX files (hw1-ID-uml.doc or .docx in the latter case).
 
 \item \textbf{Javadocs:} Please refer to any best practise (yes, there might be
 more than one) to write your Javadoc, e.g.,
@@ -187,12 +187,12 @@ developers can have a general idea by just looking at your diagram.
 
 \item \textbf{Performance evaluation:} We believe you may have different ideas
 about how to design the type system, and how to implement a name entity
-recognizer, which means we won't have a shared type system to test your
-components (but we will have one in Homework 2). Therefore, you are required to
-write a collection reader to load the input text and a CAS consumer to generate
-your output (both are independent of your specific type system), and our
-evaluation will based on the output from your CAS consumer, similar as we did
-for Homework 0.
+recognizer, which means we won't prepare a shared type system for you to build
+components on (but we will have one in Homework 2). Therefore, you are required
+to write a collection reader to load the input text and a CAS consumer to
+generate your output (both are independent of your specific type system), and
+our evaluation will based on the output from your CAS consumer, similar as we
+did for Homework 0.
 
 \end{enumerate}
 
@@ -224,6 +224,7 @@ of you did for Homework 0 for any error. Or you can just report an issue at
 \hspace{-0.1\textwidth}
 
 \end{titlingpage}
+
 \input{uml/intro}
 
 \input{ner/intro}

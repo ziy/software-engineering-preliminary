@@ -58,13 +58,12 @@ about the details, you can refer to the Appendix for the guideline.
 
 \end{qa}
 
-We show you a very simple named entity recognizer based on token's
+Here, we present you a very simple named entity recognizer based on each token's
 part-of-speech (e.g., noun, verb, adjective, adverb, etc.) in Listing
 \ref{lst:simple-ner}. The idea of this named entity recognizer is simple. It
 first uses a tokenizer to tokenize the sentence into tokens, and then label each
-token with a part-of-speech tag.
-Finally, the consecutive nouns will be grouped into ``noun phrases'', which will
-be added to the list of name entities.
+token with a part-of-speech tag. Finally, the consecutive nouns will be grouped
+into ``noun phrases'', which will be added to the list of name entities.
 
 \small
 \lstinputlisting[language=Java,float,linewidth=1.2\textwidth,caption=A simple
@@ -86,5 +85,5 @@ P00001606T0076|42 56|5-nucleotidase
 Luckily, we correctly identify two gene mentions with this simple approach. But
 ``Comparison'' is definitely not a gene mention. If you like to apply a similar
 approach, you could try to find out solutions to fix this. Got some ideas? I
-suggest you to write them down now since you need some additional steps before
-you can actually implement the components.
+suggest you to write them down now since you need some additional steps to setep
+the project before you can actually implement the components.

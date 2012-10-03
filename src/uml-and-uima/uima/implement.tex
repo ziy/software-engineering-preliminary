@@ -1,13 +1,13 @@
 
 \section{Adding descriptors and codes for your name entity recognizer}
 
-If you have one or several idea(s) for the Gene Mention tagging task, it's time
-to implement all of them in this task. You will find the official tutorial is
-helpful for you to accomplish this task. Except that you are required to build
-your component based on UIMA framework, there is little limilation on how you
-should design and implement your type system as well as all the pipeline
-components. Nevertheless, there are still some suggestions (or you can say
-tips or our expections) to consider.
+If you have one or several idea(s) for the Gene Mention tagging task already,
+it's time to implement all of them in this task. You will find the official
+tutorial is helpful for you to accomplish this task. Except that you are
+required to build your component based on UIMA framework, there is little
+limitation on how you should design and implement your type system as well as
+all the pipeline components. Nevertheless, there are still some suggestions (or
+you can say tips or our expectations) to consider.
 
 \subsection{Type system}
 
@@ -29,13 +29,13 @@ of the categories.
 \item Another common practise in the type system design is to create a
 \emph{base annotation} type which includes two features: a string feature
 \emph{source} and a numeric feature \emph{confidence} to help keep track of
-where an annotation was originally made from, and how confidence the annotation
+where an annotation was originally made by, and how confidence the annotation
 was. All other types then inherit from this base annotation type.
 
-\item You could assign a (or several) namespace(s) for your types, e.g., instead
-of \texttt{Sentence} (default namespace), you could name it
-\texttt{model.Sentence} (a type with namespace \texttt{model}). Once you click
-the \textbf{JCasGen} button, you will find nice hierarchical folder structure
+\item You could assign a (or several) name space(s) for your types, e.g., instead
+of \texttt{Sentence} (default name space), you could name it
+\texttt{model.Sentence} (a type with name space \texttt{model}). Once you click
+the \textbf{JCasGen} button, you will find a nice hierarchical folder structure
 created under \texttt{src/main/java} for the Java classes corresponding to the
 types.
 
@@ -119,14 +119,14 @@ submission will also bundle those resources along with your codes.
 evaluate the quality of your codes.
 
 \item The most creative ideas will happen in the intermediate annotators. We
-have mentioned many possible solutions to do this. You can try and implement
+have mentioned some possible solutions to do this. You can try and implement
 multiple approaches, and annotate the gene mentions for the sentence multiple
 times. All the annotations should be kept in the CAS until a final ``merging''
 component takes all the annotations and make a final judgment.
 
 You can use the type's \emph{source} feature to identify, among all the
-approaches, which annotator makes this annotation, and \emph{confidence} feature
-as a weight to vote for a final decision. This approach was also applied in
-IBM's Watson system.
+approaches, which annotator is attributed this annotation, and \emph{confidence}
+feature as a weight to vote for a final decision. This approach was also applied
+in IBM's Watson system.
 
 \end{enumerate}

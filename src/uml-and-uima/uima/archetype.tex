@@ -11,7 +11,7 @@ be helpful for you when you are creating a Maven project.
 \item The first thing you should do is to inform m2e where to find the
 archetypes. Open your Eclipse's \textbf{Preferences} window, and navigate to
 \textbf{Maven} $\rightarrow$ \textbf{Archetypes}, and click \textbf{Add Remote
-Catlog\ldots}. (See Figure \ref{fig:archetype-01-catalog})
+Catalog\ldots}. (See Figure \ref{fig:archetype-01-catalog})
 
 \begin{figure}[t]
 \centering
@@ -29,8 +29,8 @@ groups/course/archetype-catalog.xml
 
 Due to page width limitation, the URL is split into two lines. Be aware that
 when you copy the above two lines into the text field, a space might replace the
-line break, so don't forget to space remove the space between \verb|content/|
-and \verb|groups|.
+line break, so don't forget to remove any space between \verb|content/| and
+\verb|groups|.
 
 Optionally, you can add a \textbf{Description} for this catalog, for example
 ``Course Catalog''. See Figure \ref{fig:archetype-02-add}. Then click
@@ -92,11 +92,12 @@ with ID being your Andrew Id. Then click \textbf{Finish}. See Figure
 \end{figure}
 
 \item Now you have a new Maven project created from the archetype, which means
-there will be no extra steps to manually edit the pom.xml file on your own.
-Instead the archetype includes most information Maven needs to execute goals.
+there will be no extra steps to manually edit the \verb|pom.xml| file on your
+own. Instead the archetype includes most information Maven needs to execute
+goals.
 
 The only information that Maven doesn't know about from archetype or the
-information we have typed to create the project is SCM. You should edit the
+information we have typed to create the project is SCM. You need to edit the
 \texttt{pom.xml} file to type in the SCM information of your GitHub repository
 for Homework 1 as you did in Homework 0.
 
@@ -139,6 +140,3 @@ proceed to patch the archetype to help many others who may suffer from this?
 me regarding any issue.
 
 \end{qa}
-
-
-
