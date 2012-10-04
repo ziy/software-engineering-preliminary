@@ -19,12 +19,10 @@ Catalog\ldots}. (See Figure \ref{fig:archetype-01-catalog})
 \caption{Configuring Maven catalog\label{fig:archetype-01-catalog}}
 \end{figure}
 
-\item Type the following URL into the \textbf{Catalog File} field with ID and
-PASSWORD being your Andrew ID and Maven repository password.
+\item Type the following URL into the \textbf{Catalog File} field.
 
 \begin{verbatim}
-http://ID:PASSWORD@mu.lti.cs.cmu.edu:8081/nexus/content/
-groups/course/archetype-catalog.xml 
+http://ziy.github.com/hw1-archetype/repository/archetype-catalog.xml
 \end{verbatim}
 
 Due to page width limitation, the URL is split into two lines. Be aware that
@@ -61,7 +59,9 @@ the previous step) or ``All Catalogs'' in the drop-down menu for
 \textbf{Catalog}. Then, type in ``hw1-archetype'' (without quotes) in the \textbf{Filter}
 field. While you are typing, you will find the progress bar indicates you that
 it is busy ``Retrieving archetypes''. Select the archetype listed below, and
-click next to continue. See Figure \ref{fig:archetype-04-filter}.
+click next to continue. See Figure \ref{fig:archetype-04-filter}. Note that
+since we will continue improving the archetype or fixing bugs if any, the
+version number cannot different from what you see in the figure.
 
 \begin{figure}[t]
 \centering
@@ -136,9 +136,13 @@ Your implementation starts here.
 ``Could not transfer artifact
 edu.cmu.lti.11791.f12.hw1:hw1-archetype:pom:0.0.1''.
 
-\item[A1] There seems to be a problem with the m2e plug-in again. You can turn
-to the command line directly to execute the Maven \texttt{archetype:generate}
-goal. Specifically,
+\item[A1] \emph{\textbf{UPDATE}: You are unlikely to see this error any more,
+please update the Catalog URL to
+\url{http://ziy.github.com/hw1-archetype/repository/archetype-catalog.xml})}.
+
+There seems to be a problem with the m2e plug-in again. You can turn to the
+command line directly to execute the Maven \texttt{archetype:generate} goal.
+Specifically,
 
 \begin{enumerate}
 
