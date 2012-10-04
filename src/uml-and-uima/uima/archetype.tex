@@ -53,7 +53,7 @@ click \textbf{Next}.
 \begin{figure}[t]
 \centering
 \includegraphics[scale=0.3]{archetype-03-new}
-\caption{Unselecting Create a simple project\label{fig:archetype-03-new}}
+\caption{Unselecting ``Create a simple project''\label{fig:archetype-03-new}}
 \end{figure}
 
 \item Here you can select ``Course Catalog'' (or other names you specified in
@@ -132,10 +132,88 @@ Your implementation starts here.
 
 \begin{qa}
 
-\item[Q1] I found a bug in the archetype and I know how to fix it. How should I
+\item[Q1] Creating a new Maven project from archetype you provided failed due to
+``Could not transfer artifact
+edu.cmu.lti.11791.f12.hw1:hw1-archetype:pom:0.0.1''.
+
+\item[A1] There seems to be a problem with the m2e plug-in again. You can turn
+to the command line directly to execute the Maven \texttt{archetype:generate}
+goal. Specifically,
+
+\begin{enumerate}
+
+\item At the begining of creating a Maven project, DO check
+\textbf{Create a simple project (skip archetype selction)} in the \textbf{New Maven Project}
+window as you did in Homework 0. It will end up with a Eclipse project where the
+connection to GitHub has been established, the Maven and Java natures have been
+added to the Eclipse project configuration file.
+
+\item Then, delete the \verb|pom.xml| file automatically generated from m2e.
+
+\item Now you need to open a command line, \verb|cd| (``change directory'' command in
+most command line shells) to your workspace directory (where you can use
+\verb|ls| command to see your \verb|hw1-ID| directory, and execute the following
+command (change the ID and PASSWORD with your Andrew ID and Maven password) to
+the command line
+
+\small
+\begin{verbatim}
+mvn archetype:generate \
+-DinteractiveMode=true \
+-DarchetypeArtifactId=hw1-archetype \
+-DarchetypeCatalog=CATALOG_URL \
+-DarchetypeGroupId=edu.cmu.lti.11791.f12.hw1 \
+-DarchetypeRepository=REPO_URL \
+-DarchetypeVersion=0.0.1
+\end{verbatim}
+\normalsize
+
+where the \verb|CATALOG_URL| and \verb|REPO_URL| should be replaced by
+\verb|http://ID:PASSWORD@mu.lti.cs.cmu.edu:8081/nexus/content/|
+\verb|groups/course/archetype-catalog.xml| and
+\verb|http://ID:PASSWORD@mu.lti.cs.cmu.edu:8081/nexus/content/|
+\verb|groups/course/| respectively. (Don't forget to replace ID and PASSWORD
+with your Andrew ID and Maven password.)
+
+It will execute an interactive process to generate the Maven project, and you
+will need to type the same information we show you above, which will be similar
+to this:
+
+\small
+\begin{verbatim}
+Define value for property 'groupId': : 
+  edu.cmu.lti.11791.f12.hw1
+Define value for property 'artifactId': : 
+  hw1-ziy
+Define value for property 'version':  1.0-SNAPSHOT: : 
+  0.0.1-SNAPSHOT
+Define value for property 'package':  edu.cmu.lti.11791.f12.hw1: : 
+  edu.cmu.lti.11791.f12.hw1.ziy
+Confirm properties configuration:
+groupId: edu.cmu.lti.11791.f12.hw1
+artifactId: hw1-ziy
+version: 0.0.1-SNAPSHOT
+package: edu.cmu.lti.11791.f12.hw1.ziy
+ Y: : 
+   Y
+\end{verbatim}
+\normalsize
+
+\item When you see a ``BUILD SUCCESS'' at the end of the process, you can return
+to Eclipse, refresh the project (click on the name of the project in the
+``Package Explorer'' View, and press F5 or right-click and select
+\textbf{Refresh}).
+
+\item Finally, you need to update the Maven dependencies by right-clicking the
+project name, and select \textbf{Maven} $\rightarrow$ \textbf{Update
+Project\ldots}.
+
+\end{enumerate}
+
+\item[Q2] I found a bug in the archetype and I know how to fix it. How should I
 proceed to patch the archetype to help many others who may suffer from this? 
 
-\item[A1] The archetype project is also hosted on GitHub at
+\item[A2] The archetype project is also hosted on GitHub at
 \url{https://github.com/ziy/hw1-archetype}, and you can send a pull request to
 me regarding any issue.
 
