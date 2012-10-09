@@ -56,7 +56,20 @@ several rules for the annotators to follow in order to determine which words are
 considered as part of a single gene/protein mention. If you are really curious
 about the details, you can refer to the Appendix for the guideline.
 
+\item[Q4] Is there any existing resource or tool I can use from Maven
+repository?
+ 
+\item[A4] You can find a few machine learning tools, NLP tools, or biomedical
+resources on the Maven Central repository, e.g. Stanford CoreNLP. In addition,
+you can also find other helpful tools from our course repository (in particular,
+3rd party repository or dependency repository). To use LingPipe or resource
+wrappers (like UMLS wrapper, EntrezGene wrapper or other related biomedical
+knowledge databases), you need to include the following lines in your
+settings.xml in order to download the artifact.
+
 \end{qa}
+
+\lstinputlisting[language=XML,float,linewidth=1.1\textwidth,caption=Configuring settings.xml,label=settings]{settings.xml}
 
 Here, we present you a very simple named entity recognizer based on each token's
 part-of-speech (e.g., noun, verb, adjective, adverb, etc.) in Listing
