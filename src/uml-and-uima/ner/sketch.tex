@@ -74,12 +74,12 @@ tool,label=lst:simple-ner]{PosTagNamedEntityRecognizer.java}
 You can test the perform of this named entity recognizer with the collection
 processing engine that you will implement later. The output for the first
 sentence in the collection (i.e. the example sentence we used earlier for this
-task) is:
+task) is\footnote{Note that the white-spaces should not be counted.}:
 
 \begin{verbatim}
 P00001606T0076|0 10|Comparison
-P00001606T0076|16 37|alkaline phosphatases
-P00001606T0076|42 56|5-nucleotidase
+P00001606T0076|14 33|alkaline phosphatases
+P00001606T0076|37 55|5-nucleotidase
 \end{verbatim}
 
 Luckily, we correctly identify two gene mentions with this simple approach. But
