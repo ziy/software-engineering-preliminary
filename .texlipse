@@ -2,7 +2,7 @@
 #Tue Oct 02 22:21:25 EDT 2012
 markTmpDer=true
 builderNum=7
-outputDir=build/uml-and-uima/
+outputDir=build/cse-and-qa/
 makeIndSty=
 bibrefDir=
 outputFormat=pdf
@@ -11,4 +11,4 @@ mainTexFile=main.tex
 outputFile=main.pdf
 langSpell=en
 markDer=true
-srcDir=src/uml-and-uima/
+srcDir=src/cse-and-qa/

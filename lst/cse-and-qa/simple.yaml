@@ -1,0 +1,8 @@
+class: java.edu.cmu.lti.oaqa.openqa.test.teamXX.FooKeytermExtractor
+foo: bar
+cross-opts:
+  parameter-a: [value1, value2]
+  parameter-b: [value3, value4]
+
+persistence-provider: |
+  inherit: ecd.default-log-persistence-provider

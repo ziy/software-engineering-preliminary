@@ -1,0 +1,46 @@
+
+\section{Planning on keyterm extractor based on abstract classes}
+
+Different from what you did for Homework 1, where you built the whole UIMA CPE
+pipeline all by yourself, by composing \texttt{Annotator}s and writing XML
+descriptors, UIMA ECD \& CSE framework provide you with easy-to-write YAML based
+descriptors and easy-to-use execution module. Moreover, \texttt{BaseQA} project
+includes abstract classes that extend from \verb|JCasAnnotator_ImplBase|. For
+this task, you need to focus on two abstract classes defined for the first
+phrase \emph{keyterm extraction}: \texttt{AbstractKeytermExtractor} and
+\texttt{AbstractKeytermUpdater}.
+
+Based on your experience with UIMA SDK, there are two subtasks to migrate your
+code from UIMA SDK to CSE: Java code migration and descriptor migration. We will
+help you with both of them in the next sections. But before you move onto the
+next section, we encourage the teams should clearly plan and identify the tasks
+(by creating issues on GitHub and assigning each to a particular team member)
+before start coding. For example, if you have four members in the team, then it
+might be a good idea to create four different issues indicating four different
+integration subtasks.
+
+\begin{qa}
+
+\item[Q1] What if all of us implemented exactly the same algorithm for Homework
+1? Do we still need to incorporate all of them?
+
+\item[A1] Yes. For M1, it is just a practise for all the team members, and you
+should report the comparison experiment even though some of them might show the
+same performance in evaluation results. If you want to see a different result,
+we encourage you to include the baseline NER method we provided to you in
+hw1-archetype, and integrate it as another option.
+
+For M2 and M3, you only need to incorporate a single best component for each
+phrase.
+
+\item[Q2] I notice that the gold-standard keyterms are not only gene or protein
+names, and it also makes sense to me that keyterms should contain other types of
+important information, like key verbs. But our implementation for Homework 1
+focused on gene and protein name identification, should I make any change to my
+code to in order to identify other types of keyterms?
+
+\item[A2] Generally speaking, you don't need for M1. We won't grade your M1
+based on keyterm extraction results. But for M2 and M3, you may find sometimes
+gene and protein names are not enough to express the information need.
+
+\end{qa}

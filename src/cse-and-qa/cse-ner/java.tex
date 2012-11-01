@@ -1,0 +1,48 @@
+
+\section{Inheriting from AbstractKeytermExtractor or AbstractKeytermUpdater}
+
+To migrate each of your team members' components, you can do the following:
+
+\begin{enumerate}
+
+\item As suggested earlier, you should create your own components in the package
+\texttt{java/edu/cmu/lti/oaqa/openqa/test/teamXX/keyterm}, in case another
+\texttt{teamYY} might have a component with exactly the same class name as
+yours.
+
+\item \texttt{AbstractKeytermExtractor} is mandatory for the pipeline, which
+identifies the keyterms from a question. Most of the time, you might want to
+inherit from \texttt{AbstractKeytermExtractor} for your own
+\texttt{KeytermExtractor} (please think of a better name for your component
+rather than \texttt{KeytermExtractor}, \texttt{MyKeytermExtractor}, or
+\texttt{TeamXXNKeytermExtractor}).
+
+In Listing \ref{lst:abstract-keyterm-extractor}, in you can see the only method
+your component needs to implement (the hook method) is \verb|getKeyterms|, and
+the \verb|process| method helps you retrieve data you need from CAS and store
+your output back to CAS.
+
+\lstinputlisting[language=Java,float,linewidth=1.1\textwidth,caption=AbstractKeytermExtractor.java,label=lst:abstract-keyterm-extractor]{AbstractKeytermExtractor.java}
+
+\item Since your component extends \verb|JCasAnnotator_ImplBase|, and
+\verb|process| is the only method finalized by the abstract class, which means
+if you can still \verb|getConfigParameterValue| within an \verb|@Override|-ing
+\verb|initialize| method. But remember to call the parent's \verb|initialize|
+method before look up your own configuration parameters. Specifically, you can
+write the \verb|initialize| method similar to this:
+
+\lstinputlisting[language=Java,float,linewidth=1.1\textwidth,caption=Sample initialze method,label=lst:initialize]{initialize.java}
+
+\item \verb|Keyterm| is defined in the \textbf{BaseQA} project, and it is easy
+to create by using the constructor \verb|Keyterm(String text)|.
+
+\item You can also consider to use the simple keyterm extractor from
+\texttt{HelloQA}, and make necessary change to the extracted keyterms with one
+or several components that extend \texttt{AbstractKeytermUpdater}. In Listing
+\ref{lst:abstract-keyterm-updater}, you can see the only abstract method is
+\verb|updateKeyterms|, where you can get all the extract keyterms from a
+previous step as inputs, and you have to return another list of keyterms.
+
+\lstinputlisting[language=Java,float,linewidth=1.1\textwidth,caption=AbstractKeytermUpdater.java,label=lst:abstract-keyterm-updater]{AbstractKeytermUpdater.java}
+
+\end{enumerate}

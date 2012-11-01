@@ -1,0 +1,156 @@
+
+\section{Team coding with GitHub}
+
+You will again use GitHub to host your project code. But different from previous
+homeworks, all the team members need to collaborate on the project, and commit
+the code changes to the same repository, which means it is good to learn how to
+more about git and GitHub in this subtask.
+
+\subsection{Creating a repository}
+
+\begin{enumerate}
+
+\item The team leader needs to create a repository with his/her GitHub acccount,
+and name your project as \texttt{hw2-teamXX}, where \texttt{XX} is your team
+number, which is a two-digit number ranging from 01 to 18. If you are not sure
+how to create a GitHub repository, please refer to Homework 0.
+
+At this point, all the team members are able to checkout the empty project and
+start working on their own. But this is NOT recommended! We recommend the team
+leader could checkout the project from GitHub repository, go through the entire
+Maven project building process (we will come to this in the next subtask) until
+you can ran a simple hellobioqa pipeline. Then, the team leader again, from
+his/her laptop, commits and pushes everything to the repository before the team
+members clone the project.
+
+\item Now, everyone has the read permission to your project repository (since it
+is a public repository). To help your team members gain read/write permissions,
+you, the team leader, should add them as collaborators. You need to click the
+\textbf{Admin} tab on your project homepage, and click the
+\textbf{Collaborators} menu on the left. Put in your teammates' GitHub IDs one
+by one, and click \textbf{Add} button.
+
+\end{enumerate}
+
+\subsection{Creating milestones, issues, and Wiki pages}
+
+To create milestones for your development will help better organize your team
+members, know your collaborators' progress, and help users/customers know what
+they could expect from a future release. Issues can be detailed action items
+team members would like to contribute to each milestone. Action can be bug fix,
+feature enhancement, etc. If you are still unclear what a milestone is or what
+an issue is, or you want to understand how milestone and issue tracking system
+can help software development, you can search on Google and find out many
+interesting blogs. You are recommended to read about the features of GitHub
+issue tracking system at
+\url{https://github.com/blog/831-issues-2-0-the-next-generation} and
+\url{https://github.com/features/projects/issues}.
+
+We recommend all the team members have a discussion on how to set the
+milestones, and what your first several initial issues will be (i.e., what they
+first couple of things you want to do at the beginning.) And the team leader
+does the following steps. \textbf{Remember that you are unlikely to submit all
+the issues to the tracking system at once, you may create new issues for bugs to
+fix or new features to implement, change the owner (assignee) of the issue,
+close implemented issues, or mark some as wontfix. All your team members
+are responsible to maintain your milestones and issues.}
+
+\begin{enumerate}
+
+\item To create a milestone, you can navigate to the \textbf{Issues} tab of your
+project homepage, then click the \textbf{Milestones} below the main menu bar.
+Now you are able to see the button \textbf{Create a new milestone}, click it.
+
+\item Type your title for the milestone, e.g., ``M1'' for the first milestone
+(you can also make it more meaningful and specific). Write a few descriptions
+for this milestone, like the goal and the brief descriptions of features will be
+enhanced in this milestone. Finally, select a ``Due Data'' for the milestone.
+Click the ``Create Milestone'' to finalize creating your milestone.
+
+\item Do the previous step once again until all your milestones are created.
+
+\item Now, you need to submit your first several issues. Go back to the
+\textbf{Issues} tab on your project homepage, and click \textbf{New Issue}. Type
+a title, assign the task to a particular team member, link this issue to a
+previously created milestone. Finally write down detailed comments to the issue.
+
+You may find when you type ``@'' followed by your collaborator's ID in the
+comment box, you are able to mention your collaborator as you mention your
+friend in a tweet on Twitter.
+
+You can learn how to write in GitHub Flavored Markdown language, by clicking the
+link above the textbox.
+
+You can also attch labels to each issue by selecting them from the right panel.
+As we mentioned earlier, you can change the milestone assignment, in particular,
+if you find you couldn't finish it by M1, then you can change it to M2 later, or
+you can also relabel it as \textbf{wontfix}.
+
+\end{enumerate}
+
+Now, you can create a Wiki page for your team meeting minutes and other
+important items.
+
+\begin{enumerate}
+
+\item Click the ``Wiki'' tab at the top of your project homepage, and click
+\textbf{Edit Page} to start editing it.
+
+\end{enumerate}
+
+Once you reach this point, remember to send us an email to report the URL of
+your project repository page (e.g., \url{https://github.com/ID/hw2-teamXX}).
+
+\subsection{Team coding with git-branch, git-merge, git-rebase}
+
+Collaboration is important for this homework. All the team members start their
+individual development after the team leader gets the framework ready, and
+pushes all his/her local commits to the repository. Once a team member finalizes
+his/her development, he/she might take responsibility on another task, or want
+to check the integrity or compatibility with features implemented by
+collaborators. After all the individual developments are done, team leader is
+responsible to merge all the newly developed components into the same codebase
+and test the integrity.
+
+Git branching is a good tool to help the team manage parallel development and
+distributed codebase. In fact, the branching mechanism is widely adopted by not
+only git, but many other version control systems, e.g., SVN or Mercurial (Hg).
+But one of the most important reasons that people love git branching over SVN or
+Mercurial (Hg) is its light-weight nature, which allow switching between
+development branches within the same clone of a repository.
+
+Normally, the team leader is in charge of the \texttt{master} branch (the one
+you probably used for homework 0 and 1), which usually corresponds to a codebase
+for the most recent stable release, while team members should create branches
+for each individual task assignment, e.g., bug fixes, feature enhancement with
+\texttt{git branch} command. You can also do it within Eclipse by right-clicking
+the project name, and select \textbf{Team} $\rightarrow$ \textbf{Switch To}
+$\rightarrow$ \textbf{New Branch\ldots}.
+
+To merge multiple development branches back to \texttt{master} branch (or in
+Eclipse \textbf{Team} $\rightarrow$ \textbf{Switch To} $\rightarrow$
+\textbf{master}), you should switch back to master, and then \texttt{git merge}
+the branch you want to be merged (or \textbf{Team} $\rightarrow$
+\textbf{Merge\ldots}). Sometimes, you may also need \texttt{git rebase} when you
+later realize your development should depend on another feature that was also
+being developed by your collaborator, which hadn't beed integrated in the
+\texttt{master} branch by the time you created your development branch.
+
+To better understand git branching, you should read the ``Git Branching''
+chapter of Pro Git Book (\url{http://git-scm.com/book/en/Git-Branching}). You
+can also find a more sophisticated branching model at
+\url{http://nvie.com/posts/a-successful-git-branching-model/}, which may be too
+complicated for this homework, but it can inspire how you want to manage your
+branches.
+
+If you are looking for a Eclipse plug-in that can bring the GitHub issue
+tracking system to your workspace, e.g., create/close/comment issues, label
+them, assign to a person within eclipse, or automatically get notified by a
+message bubble if an issue is assigned to you, then you can try to investigate
+Mylyn plug-in. In the ``Tips and Tricks using Eclipse with Github''
+post\footnote{
+\url{http://eclipsesource.com/blogs/2012/08/28/tips-and-tricks-using-eclipse-with-github/}}
+, you will find the basic idea how Mylyn GitHub connector works. By default,
+Eclipse Juno for Java developers comes with EGit, Mylyn, and Mylyn Github
+connector, and the Task View is on the top-right corner of the Java perspective
+by default.

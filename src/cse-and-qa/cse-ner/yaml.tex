@@ -1,0 +1,53 @@
+
+\section{Writing YAML descriptor}
+
+To write a descriptor for an annotator in CSE is much easier than you did in
+Homework 1 since it is based on YAML instead of XML. If you want to find a tool
+that can assist you to edit YAML files, e.g., syntax hightlight, automatic YAML
+grammar checking, you can consider Eclipse YEdit plug-in.
+
+\begin{enumerate}
+
+\item Under \texttt{src/main/resources/hellobioqa} directory, create a
+subdirectory \texttt{teamXX} for your components, and then probably you want to
+create different subdirectories (\texttt{keyterm}, \texttt{retrieval}, and
+\texttt{passage}) in \texttt{teamXX} directory for different phases.
+
+\item Then create the descriptor file (with extension name \texttt{yaml}) for
+your component. Open the descriptor file. If you installed YEdit plug-in, then you are
+able to right-click the file, and click \textbf{Open With} $\rightarrow$
+\textbf{YEdit YAML Editor}.
+
+\item If you component doesn't required any additional configuration parameters,
+then just simply type your class path and a \verb|persistence-provider| into
+your file, like in Listing \ref{lst:simplest}. Remember that the
+\verb|persistence-provider| is required by all the components. For components
+with parameters, you can declare the parameters and values like in List
+\ref{lst:simpler}. If you want to set different values to the same parameter,
+and test their performances in a single experiment, you can use
+\verb|cross-opts| like in Listing \ref{lst:simple}.
+
+\lstinputlisting[language=Python,float,linewidth=1.1\textwidth,caption=Descriptor
+for a component without parameters,label=lst:simplest]{simplest.yaml}
+
+\lstinputlisting[language=Python,float,linewidth=1.1\textwidth,caption=Descriptor
+for a component with parameters,label=lst:simpler]{simpler.yaml}
+
+\lstinputlisting[language=Python,float,linewidth=1.1\textwidth,caption=Descriptor
+for a component with cross-opts,label=lst:simple]{simple.yaml}
+
+\item Finally, you need to properly set the pointers to all of them in the main
+yaml. Open the \texttt{src/main/resources/hellobioqa/hellobioqa.yaml}, and
+change the \texttt{author} to ``teamXX''. Add your components into the
+\verb|options| fields of the first phase, to make the \verb|pipeline| field look
+like Listing \ref{lst:hellobioqa}.
+
+\lstinputlisting[language=Python,float,linewidth=1.1\textwidth,caption=Pipeline
+descriptor,label=lst:hellobioqa]{hellobioqa.yaml}
+
+\item Run the pipeline again by right-clicking the launch file as we mentioned
+earlier. Then git-commit, git-push, git-checkout (change to \texttt{master}
+branch. Not sure? Take a look at the Pro Git Book), git-merge, maven
+release:prepare, maven release:perform.
+
+\end{enumerate}

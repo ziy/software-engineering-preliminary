@@ -1,0 +1,5 @@
+class: java.edu.cmu.lti.oaqa.openqa.test.teamXX.FooKeytermExtractor
+foo: bar
+
+persistence-provider: |
+  inherit: ecd.default-log-persistence-provider

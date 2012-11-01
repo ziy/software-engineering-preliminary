@@ -1,0 +1,211 @@
+
+\section{Learning biomedical question answering task}
+
+Question Answering (QA) is a computer science discipline within the fields of
+information retrieval and natural language processing (NLP) which is concerned
+with building systems that automatically answer questions posed by humans in a
+natural
+language.\footnote{\url{https://en.wikipedia.org/wiki/Question_answering}} The
+system you are going to build will handle biomedical questions, e.g., ``What is
+the role of PrnP in mad cow disease?''. As you can see, different from a generic
+question answering, a biomedical QA system requires domain specific knowledge
+bases, NLP tools, literature collections, etc., in order to answer such
+questions.
+
+One of the biomedical information retrieval benchmark is TREC Genomics
+Task\footnote{\url{http://ir.ohsu.edu/genomics}}. The Text Retrieval Conference
+(TREC) every year provides a platform for testing and experiments of retrieval
+methods for different tasks. The Genomics Track for 2006 focuses on retrieval of
+relevant passages within an article collection from biomedical journals as
+answers to the questions in biomedical domain.
+
+The genomics track provides 28 topics (or questions)\footnote{Strictly, a topic
+is an information need, that can be expressed literally differently as many
+different questions, but here we use topic and question interchangably.} created
+by active biological researchers. Each topic fit within one of four
+question-oriented topic templates: the role of a gene in a disease, the effect
+of a gene on a biological process, how genes interact in organ function, and how
+mutations in genes influence biological processes. All the questions are listed
+in Table \ref{tab:question}:
+
+\begin{table}[t] \centering
+\caption{28 topics (or questions) from TREC Genomics 2006\label{tab:question}}
+\small
+\begin{tabular}{lp{32em}}
+\hline
+ID & Question \\
+\hline
+160 & What is the role of PrnP in mad cow disease? \\
+161 & What is the role of IDE in Alzheimer's disease \\
+162 & What is the role of MMS2 in cancer? \\
+163 & What is the role of APC (adenomatous polyposis coli) in colon cancer? \\
+164 & What is the role of Nurr-77 in Parkinson's disease? \\
+165 & How do Cathepsin D (CTSD) and apolipoprotein E (ApoE) interactions contribute to Alzheimer's disease? \\
+166 & What is the role of Transforming growth factor-beta1 (TGF-beta1) in cerebral amyloid angiopathy (CAA)? \\
+167 & How does nucleoside diphosphate kinase (NM23) contribute to tumor progression? \\
+168 & How does BARD1 regulate BRCA1 activity? \\
+169 & How does APC (adenomatous polyposis coli) protein affect actin assembly \\
+170 & How does COP2 contribute to CFTR export from the endoplasmic reticulum? \\
+171 & How does Nurr-77 delete T cells before they migrate to the spleen or lymph nodes and how does this impact autoimmunity? \\
+172 & How does p53 affect apoptosis? \\
+173 & How do alpha7 nicotinic receptor subunits affect ethanol metabolism? \\
+174 & How does BRCA1 ubiquitinating activity contribute to cancer? \\
+175 & How does L2 interact with L1 to form HPV11 viral capsids? \\
+176 & How does Sec61-mediated CFTR degradation contribute to cystic fibrosis? \\
+177 & How do Bop-Pes interactions affect cell growth? \\
+178 & How do interactions between insulin-like GFs and the insulin receptor affect skin biology? \\
+179 & How do interactions between HNF4 and COUP-TF1 suppress liver function? \\
+180 & How do Ret-GDNF interactions affect liver development? \\
+181 & How do mutations in the Huntingtin gene affect Huntington's disease? \\
+182 & How do  mutations in Sonic Hedgehog genes affect developmental disorders? \\
+183 & How do  mutations in the NM23 gene affect tracheal development? \\
+184 & How do  mutations in the Pes gene affect cell growth? \\
+185 & How do  mutations in the hypocretin receptor 2 gene affect narcolepsy? \\
+186 & How do  mutations in the Presenilin-1 gene affect Alzheimer's disease? \\
+187 & How do  mutations in familial hemiplegic migraine type 1 (FHM1) gene affect calcium ion influx in hippocampal neurons? \\
+\hline
+\end{tabular}
+\end{table}
+
+Documents for this task come from a corpus of 162,048 full-text biomedical
+articles. If you want to estimate the size of the corpus, 12.3 GB (uncompressed)
+and 3 GB (standard compressed). Each document is identified by its PMID
+(PubMed\footnote{\url{http://www.ncbi.nlm.nih.gov/pubmed}} ID). Postprocessing
+is done to eliminate as much non-article material as we could from the original
+HTML formats Legal spans are defined as any text > 0 bytes in length between an
+HTML paragraph tag, which is any tag that starts with \verb|<p| or \verb|</p|.
+
+Similar to what you will be asked by the BioCreative competition organizer, you
+are required to follow an output format for the retrieved relevant passages. The
+format for TREC Genomics complies with standard TREC output format: a tabular
+format that consists seven fields: topic number, doc ID (PubMedID), rank, score,
+passage start, passage length, run tag.
+
+The evaluation for the relevant passage retrieval is measured with a variant of
+mean average precision (MAP). Three different levels will be applied to the
+final result:
+passage-level, document-level and aspect-level. In addition to the passage-level
+evaluation, document-level captures the coverage of different relevant
+documents, and aspect-level evaluation captures the coverage of different MeSH
+terms\footnote{\url{http://www.ncbi.nlm.nih.gov/mesh}}.
+
+\subsection{HelloBioQA: BioQA framework and testbed implementation}
+
+We will briefly describe how the HelloBioQA framework based on CSE can help
+build your own QA pipeline, and evaluate your components automatically.
+
+The input file ``trecgen06.txt'' has been put into the
+\texttt{src/main/resources/input} directory, while consists of all the
+questions, one per line. Each sentence will be preceded on the same line by a
+sentence identifier, i.e.,
+
+\begin{verbatim}
+160|What is the role of PrnP in mad cow disease?
+\end{verbatim}
+
+The gold-standard relevant passages have also been included in HelloBioQA
+framework (\texttt{src/main/resources/gs/trecgen06.passage}) project, in
+addition, we manually annotated keyterms for the questions. Different from
+homework 1, the character offsets DO consider whitespaces, which is adopted by
+the UIMA framework. The gold-standard keyterms include not only the named
+entities, but also other important key verbs. Although gold-standard keyterm
+does not perfectly fit the requirement of NER evaluation, it will be used to
+test your NER components (\texttt{src/main/resources/gs/trecgen06.keyterm}). We
+won't consider the evaluation result in M1 when grading your homework.
+
+We have implemented everything you need for collection reader, gold standard
+decorator, and evaluators, which means you don't need to put any effort to
+investigate how to read the questions and generate the output format in this
+homework. But we still encourage you to investigate how three different levels
+of MAP evaluation work. At the end of your pipeline execution, you will see the
+evaluation results similar to the following:
+
+\small
+\begin{verbatim}
+ ------------------ EVALUATION REPORT ------------------
+Experiment: ac146544-b116-4cce-897e-77bfa1b4fc18:1
+Evaluator,Configuration,Precision,Recall,F-1,MAP,Binary Recall,Count
+RetrievalMeasuresEvaluator,1|SimpleKeytermExtractor[persistence-provi
+der:inherit: ecd.default-log-persistence-provider]>2|SimpleSolrRetrie
+valStrategist[hit-list-size:10#embedded:true#core:data/guten#persiste
+nce-provider:inherit: ecd.default-log-persistence-provider ]>3|Simple
+PassageExtractor[hit-list-size:10#embedded:true#core:data/guten#keyte
+rmWindowScorer:edu.cmu.lti.oaqa.openqa.hello.passage.KeytermWindowSco
+rerSum#persistence-provider:inherit: ecd.default-log-persistence-prov
+ider],0.5000,0.6667,0.5714,0.6667,1.0000,1
+
+ -------------------------------------------------------
+ ------------------ EVALUATION REPORT ------------------
+Experiment: ac146544-b116-4cce-897e-77bfa1b4fc18:1
+Evaluator,Configuration,Precision,Recall,F-1,MAP,Binary Recall,Count
+RetrievalMeasuresEvaluator,1|SimpleKeytermExtractor[persistence-provi
+der:inherit: ecd.default-log-persistence-provider]>2|SimpleSolrRetrie
+valStrategist[hit-list-size:10#embedded:true#core:data/guten#persiste
+nce-provider:inherit: ecd.default-log-persistence-provider ]>3|Simple
+PassageExtractor[hit-list-size:10#embedded:true#core:data/guten#keyte
+rmWindowScorer:edu.cmu.lti.oaqa.openqa.hello.passage.KeytermWindowSco
+rerSum#persistence-provider:inherit: ecd.default-log-persistence-prov
+ider],0.2000,0.3333,0.2500,0.3056,1.0000,1
+
+ -------------------------------------------------------
+ ------------------ EVALUATION REPORT ------------------
+Experiment: ac146544-b116-4cce-897e-77bfa1b4fc18:1
+Evaluator,Configuration,DocumentMAP,PassageMAP,AspectMAP,Count
+PassageMAPMeasuresEvaluator,1|SimpleKeytermExtractor[persistence-prov
+ider:inherit: ecd.default-log-persistence-provider]>2|SimpleSolrRetri
+evalStrategist[hit-list-size:10#embedded:true#core:data/guten#persist
+ence-provider:inherit: ecd.default-log-persistence-provider ]>3|Simpl
+ePassageExtractor[hit-list-size:10#embedded:true#core:data/guten#keyt
+ermWindowScorer:edu.cmu.lti.oaqa.openqa.hello.passage.KeytermWindowSc
+orerSum#persistence-provider:inherit: ecd.default-log-persistence-pro
+vider],0.3056,0.0202,1.0000,1 
+\end{verbatim}
+\normalsize
+
+Three big tables correspond to the evaluation at different phases, the first
+table is the result for keyterm extraction, and the sencond table for relevant
+document retrieval, and the last table is for the final passage extraction. If
+you have more than traces running (e.g., multiple options for NER), then you
+will see multiple lines for each of the traces. If you are familiar with
+information retrieval, then the evaluation for keyterm extraction and document
+retrieval follows the standard definitions for Precision/Recall/F-1/MAP/etc., if
+you are unfamiliar, we suggest you to search them in Wikipedia or other
+information retrieval textbooks. Believe me, all of them are easy to understand!
+The evaluation for passage extraction follows a variant of MAP definition, you
+can find detailed algorithm from the task's homepage.
+
+% move them to task 2?
+What you need to implement is only the \verb|pipeline| (if you are wondering why
+I am using typewriter font for ``pipeline''. please take a look at the CSE
+Tutorial again). The pipeline will consist of three major phrases, which have
+been defined in BaseQA framework. (If you couldn't remember what they are, I
+again encourage you to go over the CSE Tutorial.) In fact, you can define
+totally different phrases and put them into your QA pipeline\footnote{For
+example, Statistical Source Expansion for Question Answering,
+\url{http://dl.acm.org/citation.cfm?id=2063632}}, but for this task, you are
+recommended to focus on this ``traditional'' pipeline design, so that we can
+easily bundle your components for the big experiment.
+
+Before you think about the architecture and engineering, it's a good time to
+have a discussion among the team members and talk about what you can do to
+improve the performance based on the baseline implementation given by the
+HelloQA project. Put them in your Wiki page, and in the next subtask, you will
+learn how to create the Wiki.
+
+\begin{qa}
+
+\item[Q1] I've looked into the baseline implementations in HelloQA. Can you give
+us some more ideas on how to improve the system?
+
+\item[A1] Actually, since it is a past TREC task, you can easily find the papers
+from participants that describe how they tackled it. Another paper you might be
+interested in is the task overview paper from the organizer. They summarized
+many algorithms, and knowledge sources, when the competition was over:
+\url{http://trec.nist.gov/pubs/trec15/papers/GEO06.OVERVIEW.pdf}.
+
+\item[Q2] Where is the type system for HelloBioQA?
+
+\item[A2] As type system is a task specific, you should look for the one called
+\texttt{OAQATypes.xml} in \texttt{BaseQA}.
+
+\end{qa}

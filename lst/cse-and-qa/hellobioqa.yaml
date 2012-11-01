@@ -1,0 +1,24 @@
+pipeline:
+  - inherit: jdbc.sqlite.cse.phase  
+    name: keyterm-extractor
+    options: |
+      - inherit: helloqa.keyterm.simple
+      - inherit: hellobioqa.teamXX.keyterm.foo
+      - inherit: hellobioqa.teamXX.keyterm.bar
+
+  - inherit: jdbc.sqlite.cse.phase 
+    name: retrieval-strategist
+    options: |
+      - inherit: hellobioqa.retrieval.simple-solr-strategist
+          
+  - inherit: jdbc.sqlite.cse.phase  
+    name: passage-extractor
+    options: |
+      - inherit: hellobioqa.passage.simple
+      
+  - inherit: helloqa.eval.keyterm-aggregator-consumer
+
+  - inherit: jdbc.eval.retrieval-aggregator-consumer
+      
+  - inherit: helloqa.eval.passage-map-aggregator-consumer      
+  
