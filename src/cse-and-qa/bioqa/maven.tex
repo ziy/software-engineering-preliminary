@@ -23,6 +23,11 @@ Optionally, you can add a \textbf{Description} for this catalog, for example
 ``HelloBioQA Catalog''. Then click \textbf{OK} on the \textbf{Remote Archetype
 Catalog} window and another \textbf{OK} on the \textbf{Preferences} window.
 
+\item Include the following lines in your \texttt{settings.xml} in order to
+download the artifact if you didn't do so in Homework 1.
+
+\lstinputlisting[language=XML,float,linewidth=1.1\textwidth,caption=Configuring settings.xml,label=settings]{settings.xml}
+
 \item Now you can follow almost the same steps to import to Eclipse as you did
 for Homework 1. Since we have created the archetype for you, remember to
 unselect \textbf{Create a simple project (skip archetype selction)}. Then click
@@ -48,10 +53,28 @@ and Artifact Id is
 \textbf{hw2-teamXX}
 \end{center}
 
-with XX being your team number. Then click \textbf{Finish}.
+with XX being your team number. Since we also included two sample components for
+retrieval strategist and passage extraction within a particular, remember to
+specify \texttt{Package} as
+
+\begin{center}
+\textbf{edu.cmu.lti.oaqa.openqa.hellobioqa}
+\end{center}
+
+See Figure \ref{fig:package-name}. Then click \textbf{Finish}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.3]{package-name}
+\caption{Parameters to create a Maven artifact from archetype\label{fig:package-name}}
+\end{figure}
 
 \item You need to edit the \texttt{pom.xml} file to type in the SCM information
 of your GitHub repository for Homework 2 as you did in Homework 0.
+
+\item You also need to manually edit the \texttt{launches/hellobioqa.launch}
+file. Open the file, replace the \verb|${project_name}| with your project name
+(e.g., \verb|hw2-team00|).
 
 \item Same as before, you probably need to right-click the project name, and
 click \textbf{Maven} $\rightarrow$ \textbf{Update Project} to download the
