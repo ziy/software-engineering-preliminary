@@ -132,11 +132,15 @@ suggest you to first test if you can successfully run the pipeline.
 are processed, and the evaluation results are printed to the console, and you
 find no exceptions are thrown.
 
-\item Git-ignore \texttt{data/oaqa-eval.db3}, and commit/push all other code
-changes to the GitHub repository. Remember to commit the .project file,
-.classpath file and all other important configuration files from your project
-root directory, and it will be helpful for your team members to directly import
-an existing project.
+\item Git-ignore \texttt{data/oaqa-eval.db3}\footnote{Since your team member
+also needs the database file to run experiment, the team leader can add it to
+the index first then remove it after team members clone the project to their
+machines, or all the members can download an empty file from here:
+\url{https://github.com/oaqa/helloqa/blob/a051e1233be92bca309ff8761835fce412f6bfd5/data/oaqa-eval.db3?raw=true},
+and put it under \texttt{data/}.}, and commit/push all other code changes to the
+GitHub repository. Remember to commit the .project file, .classpath file and all
+other important configuration files from your project root directory, and it
+will be helpful for your team members to directly import an existing project.
 
 \item Now, other team members are able to clone the repository to their
 workspaces and start working on particular task. When you are asked to
