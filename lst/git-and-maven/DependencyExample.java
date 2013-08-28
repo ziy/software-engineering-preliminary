@@ -6,7 +6,7 @@ import edu.stanford.nlp.process.PTBTokenizer.PTBTokenizerFactory;
 import edu.stanford.nlp.process.Tokenizer;
 
 /**
- * An example for Homework 0 of 11791 F12
+ * An example for Homework 0 of 11791 F13
  * 
  * @author Zi Yang <ziy@cs.cmu.edu>
  */
