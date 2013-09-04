@@ -1,0 +1,111 @@
+
+\newpage
+
+\subsection{Grading Guidelines}
+
+\subsubsection{Task 1: UML documents (40 pts)}
+
+\begin{itemize}
+
+\item Each problem is worth 10 pts. \\
+ 
+\end{itemize}
+
+\subsubsection{Task 3: Design \& Implementation of IIS (60 pts)}
+
+\textbf{IIS design \& architecture (20 pts)}
+ 
+\begin{itemize}
+
+\item We will evaluate if the necessary IIS components: collection reader (5
+pts), annotator (5 pts), cas consumer (5 pts), and the CPE descriptor and type
+system (5 pts) are designed and implemented in a proper way, by looking at your
+codes (Java classes and descriptors) and report.
+
+\item If the basic requirement (i.e., it works!) for each of the items is met,
+then the student can get 3 points, otherwise 0 to 2 points will be given.
+
+\item If the design of each component is considered more carefully (according to
+the suggestions given in the homework instruction or outside), then 4 or 5 pts
+points will be given. For example,
+
+\begin{enumerate}
+\item line-by-line collection reader,
+\item id and text are separated during reading collection,
+\item loading a pretrained model in the initialize phase instead of process phrase,
+\item whitespace-excluded offsets are calculated only until cas consumer,
+\item proper use of configuration parameters instead of hard-wired model/file path,
+\item proper use of multi-view,
+\item type system is implemented in an inherited way,
+\item etc.
+\end{enumerate}
+
+\end{itemize}
+
+\textbf{Documentations, comments, coding style (20 pts)}
+
+\begin{itemize}
+
+\item We will first look into your report to see if it is complete, if you have
+given explanations and solutions to all our concerns (10 pts), and then we will
+take a look at the Javadoc package the Maven automatically generated for your
+project to see if it covers all the necessary information that potential users
+of your package need to know (5 pts), and finally we will again look into your
+source package to see if your Java classes are coded according to Java's best
+practise (5 pts).
+
+\item Basic points for each category is 3 pts (6 pts for the report), if some
+important part is missing, the 0 to 2 points (or 0 to 5 points for the report)
+might be given.
+
+\item A detailed document can be given 4 or 5 points (7 to 10 points for report), for example,
+
+\begin{enumerate}
+\item good insights to the problem or architecture design covered in the report,
+\item include UML design or other forms of software design in the report or Javadoc,
+\item apply design pattern in an appropriate way,
+\item detailed comparison of more than one methods in the report,
+\item interesting discovery from the experiments,
+\item etc.
+\end{enumerate}
+
+\end{itemize}
+
+\textbf{Algorithm design \& performance (20 pts)}
+
+\begin{itemize}
+
+\item We will first evaluate your submission to see if can produce moderate
+results (10 pts), and we will look into your report and code to find out what
+algorithms or knowledge base you are using (10 pts).
+
+\item Specifically, we require your output should perform no less than the
+baseline pipeline we provided to you) in order to get 6 pts for performance. 0
+to 5 points might be given for a badly performed pipeline. We might ask you to
+resubmit your package if we fail to execute it. If you are successfully
+wrapping a knowledge source or existing tool (e.g. the
+PosTagNamedEntityExtractor), or implementing your own algorithm, then 6 pts will
+be given for your algorithm design.
+
+\item If your performance is significantly better than the baseline methods (no
+matter which tool you are using), then you might be given a higher score.
+For example, we will give you 7 points if the performance is below 0.7, and 8
+points for 0.7 - 0.8, 9 points for 0.8 - 0.9, and 10 points for 0.9 - 1.0.
+
+\item Additional points (7 to 10 points) will be given for the algorithm design.
+For example, if the students consider the following aspects in their algorithm
+design,
+
+\begin{enumerate}
+\item wrap more than one methods for NER and pick the best one,
+\item a method (maybe another annotator down the pipeline) to combine different methods
+\item proper use of confidence (probability) of knowledge sources or tools,
+\item use existing tool but train a model based on a different corpus,
+\item implement evaluation components,
+\item propose and implement novel ideas for the task,
+\item investigate the problem from a biomedical (instead of language technology) view,
+\item etc.
+\end{enumerate}
+
+
+\end{itemize}

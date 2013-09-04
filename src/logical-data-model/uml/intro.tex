@@ -1,0 +1,72 @@
+
+\chapter{UML Design}
+
+In this task, you are required to answer some questions about UML. Once you've
+answered all the questions, remembered to convert whatever format your document
+is to PDF/DOC/DOCX, and name it as hw1-ID-uml.pdf, hw1-ID-uml.doc,
+hw1-ID-uml.docx, where ID is your Andrew ID, and put it under
+\texttt{src/main/resources/docs}. Moreover, don't forget to put your name and
+Andrew ID at the beginning of the document.
+
+\section{Domain diagram for IntelligentInformationSystem}
+
+``An IntelligentInformationSystem is composed of a sequence of data processing
+operations or phases. Each phase accepts certain data types as input and
+produces certain data types as output. Each phase can be implemented by any
+number of algorithms or options. Each option is implemented by a specific Java
+class. Each option may have any number of configuration parameters; each
+configuration parameter has some set of acceptable values.''
+
+Draw a UML Domain Diagram to represent the domain concepts, associations (with
+multiplicities) and attributes expressed in the description above.
+
+\section{Domain diagram for AnalysisEngine}
+
+``An AnalysisEngine is composed of a sequence of algorithms or options. Each
+option accepts certain data types as input and produces certain data types as
+output. Each option is implemented by a specific Java class. Each option has
+some number of configuration parameters; each configuration parameter has a
+specific assigned value.''
+
+Draw a UML Domain Diagram to represent the domain concepts, associations (with
+multiplicities) and attributes expressed in the description above.
+
+\section{Sequence Diagram}
+
+There is a one-to-many relationship between IntelligentInformationSystem and
+AnalysisEngine. Assume that an IntelligentInformationSystem has the
+responsibility to produce a set of AnalysisEngines that represent all of the
+possible data flows in the IntelligentInformationSystem. Design a method with
+this signature:
+
+\small
+\begin{verbatim}
+ArrayList<CollectionProcessingEngine> instantiateEngines (
+                          IntelligentInformationSystem iis);
+\end{verbatim}
+\normalsize
+
+Draw a UML Sequence Diagram to show the sequence of messages required to a) read
+the information from the IntelligentInformationSystem instance, b) instantiate
+the corresponding AnalysisEngine instances, and c) store the AnalysisEngine
+instances in a List, which is the final output of the program. The message and
+return value for this use case are illustrated below.
+
+\begin{figure}[h]
+\centering
+\begin{pspicture}(0,-2.315)(6.1384373,2.335)
+\usefont{T1}{ptm}{m}{n}
+\rput(3.6746874,1.81){\psframebox[linewidth=0.04,framesep=0.3]{IntelligentInformationSystem}}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.6684375,0.61){instantiateEngines}
+\usefont{T1}{ptm}{m}{n}
+\rput(1.7542187,-0.99){List<AnalysisEngine>}
+\psframe[linewidth=0.04,dimen=outer](4.0,0.505)(3.6,-1.495)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](3.8,1.305)(3.8,0.505)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](3.8,-1.495)(3.8,-2.295)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 5.0,arrowlength=1.4,arrowinset=0.4]{->}(0.0,0.305)(3.6,0.305)
+\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm,arrowsize=0.05291667cm 5.0,arrowlength=1.4,arrowinset=0.4]{->}(3.6,-1.495)(0.0,-1.495)
+\end{pspicture} 
+\caption{The message and return value for this use case}
+\end{figure}
+

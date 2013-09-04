@@ -1,0 +1,102 @@
+
+\section{Sketching your NER pipeline}
+
+We assume you are clear about the task, the input format, and the output, and
+now it's time to sketch your collection processing engine. How do you plan to
+design the type system? How do you plan to deal with input file and generate
+output file? What approach(es) are you going to use to identify the named
+entities? Do you also consider to incorporate any additional resources?
+
+In the next task, you will practise to solve the problem within the UIMA
+framework.
+
+\begin{qa}
+
+\item[Q1] I still have no idea about how named entities can be extracted from
+text? Could you share me some ideas?
+
+\item[A1] Named entity recognition is a long-studied problem in NLP, which means
+you can easily find many influential papers to propose novel ideas to tackle
+this issue every year, including specific to the biological domain. For example,
+
+\begin{enumerate}
+\item You can try to look for lexical/grammatical heuristics for the gene
+mentions, and summarize them in a rule-based algorithm. For example, many people
+find part-of-speech is very useful information to identity not only the named
+entities but also the text spans that cannot be named entities.
+\item If you are familiar with machine learning, then you could try to use a
+sequence model like HMM or CRF to predict the state of each token, based on the
+features you might extract.
+\item If you are familiar with biological knowledge resources, esp. gene name
+resources, you can definitely write a wrapper for the resource you think are
+relevant to the task, and look up candidate named entities via your wrapper.
+\item etc.
+\end{enumerate}
+
+We encourage you to try some novel ideas for your NER. You can incorporate an
+interesting feature in your learning framework, or you can try to combine
+multiple approaches in a more principled way. We know that each of you has a
+different background. So don't worry if you don't know how to propose a fancy
+sophisticated machine learning algorithm for this task.
+
+\item[Q2] Is there any restriction to use the sample input file? Can I use it
+as part of my training file for NER?
+
+\item[A2] Yes. You can do that. But keep in mind that we will use a different
+input file to evaluate your pipeline, so don't overfit your model! In addition,
+we encourage you to test your pipeline with the given input file to make sure
+your collection reader works properly, and test your pipeline with the sample
+output, and report the preliminary result in your report.
+
+\item[Q3] How were the gene mentions (gold-standard annotations) identified in
+the output file?
+
+\item[A3] According to the \emph{GENETAG Annotation Guidelines}, there are
+several rules for the annotators to follow in order to determine which words are
+considered as part of a single gene/protein mention. If you are really curious
+about the details, you can refer to the Appendix for the guideline.
+
+\item[Q4] Is there any existing resource or tool I can use from Maven
+repository?
+ 
+\item[A4] You can find a few machine learning tools, NLP tools, or biomedical
+resources on the Maven Central repository, e.g. Stanford CoreNLP. In addition,
+you can also find other helpful tools from our course repository (in particular,
+3rd party repository or dependency repository). To use LingPipe or resource
+wrappers (like UMLS wrapper, EntrezGene wrapper or other related biomedical
+knowledge databases), you need to include the following lines in your
+settings.xml in order to download the artifact.
+
+\end{qa}
+
+\lstinputlisting[language=XML,float,linewidth=1.1\textwidth,caption=Configuring settings.xml,label=settings]{settings.xml}
+
+Here, we present you a very simple named entity recognizer based on each token's
+part-of-speech (e.g., noun, verb, adjective, adverb, etc.) in Listing
+\ref{lst:simple-ner}. The idea of this named entity recognizer is simple. It
+first uses a tokenizer to tokenize the sentence into tokens, and then label each
+token with a part-of-speech tag. Finally, the consecutive nouns will be grouped
+into ``noun phrases'', which will be added to the list of name entities.
+
+\small
+\lstinputlisting[language=Java,float,linewidth=1.2\textwidth,caption=A simple
+name entity recognition program based on Stanford CoreNLP
+tool,label=lst:simple-ner]{PosTagNamedEntityRecognizer.java}
+\normalsize
+
+You can test the perform of this named entity recognizer with the collection
+processing engine that you will implement later. The output for the first
+sentence in the collection (i.e. the example sentence we used earlier for this
+task) is\footnote{Note that the white-spaces should not be counted.}:
+
+\begin{verbatim}
+P00001606T0076|0 10|Comparison
+P00001606T0076|14 33|alkaline phosphatases
+P00001606T0076|37 55|5-nucleotidase
+\end{verbatim}
+
+Luckily, we correctly identify two gene mentions with this simple approach. But
+``Comparison'' is definitely not a gene mention. If you like to apply a similar
+approach, you could try to find out solutions to fix this. Got some ideas? I
+suggest you to write them down now since you need some additional steps to setep
+the project before you can actually implement the components.

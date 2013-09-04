@@ -1,0 +1,63 @@
+
+\section{Learning gene mention tagging}
+
+For this task, you are going to tackle a specific NER problem in the biological
+domain, \emph{Gene Mention
+Tagging}\footnote{\url{http://www.biocreative.org/tasks/biocreative-ii/task-1a-gene-mention-tagging/}},
+and you are going to use partial labeled dataset from BioCreAtIvE (Critical
+Assessment of Information Extraction systems in Biology challenge
+evaluation)\footnote{\url{http://www.biocreative.org}}, which focuses on
+evaluating text mining and information extraction systems applied to the
+biological domain. Gene Mention Tagging task is concerned with the named entity
+extraction of gene and gene product mentions in text. For example, given a
+sentence from a biological literature: \emph{Comparison with alkaline
+phosphatases and 5-nucleotidase}, you should identify \emph{alkaline
+phosphatases} and \emph{5-nucleotidase} correspond to gene names.
+
+The input file will consist of ascii sentences, one per line. Each sentence will
+be preceded on the same line by a sentence identifier, i.e.,
+
+\begin{verbatim}
+sentence-identifier-1 text
+\end{verbatim}
+
+For example, the sentence in the above example will be given to you as follows,
+
+\begin{verbatim}
+P00001606T0076 Comparison with alkaline phosphatases and 5-nucleotidase
+\end{verbatim}
+
+You are given an example input file (consisting of 15,000 sentences, each per
+line, all from biological literature). We will later test your pipeline with a
+different dataset.
+
+You are required to output an ascii list of reported gene name mentions, one per
+line, and formatted as:
+
+\begin{verbatim}
+sentence-identifier-1|start-offset-1 end-offset-1|optional text... 
+sentence-identifier-1|start-offset-2 end-offset-2|optional text... 
+sentence-identifier-1|start-offset-3 end-offset-3|optional text... 
+sentence-identifier-2|start-offset-1 end-offset-1|optional text... 
+sentence-identifier-3|start-offset-1 end-offset-1|optional text... 
+. 
+. 
+. 
+\end{verbatim}
+
+For example, we expect you to generate the following to lines for the example
+sentence above:
+
+\begin{verbatim}
+P00001606T0076|14 33|alkaline phosphatases
+P00001606T0076|37 50|5-nucleotidase
+\end{verbatim}
+
+The sentence-identifier is from the sentence of the mention. Multiple mentions
+from the same sentence should appear on separate lines. A sentence is not
+required to have any mentions. The start-offset is the number of non-whitespace
+characters in the sentence preceding the first character of the mention, and the
+end-offset is the number of non-whitespace characters in the sentence preceding
+the last character of the mention. A sample output file will also be given to
+you, which contains all the identified gene mentions (i.e. gold-standard) for
+the input file.

@@ -1,0 +1,35 @@
+
+\section{Knowing basic concepts}
+
+From
+Wikipedia\footnote{\url{http://en.wikipedia.org/wiki/Named-entity_recognition}},
+the process of named entity recognition is defined as:
+
+\begin{quote}
+Named-entity recognition (NER) is a subtask of information extraction that seeks
+to locate and classify atomic elements in text into predefined categories such
+as the names of persons, organizations, locations, expressions of times,
+quantities, monetary values, percentages, etc.
+\end{quote}
+
+Several things you should be aware:
+
+\begin{enumerate}
+
+\item NER involves two subtasks: ``locating'' and ``classifying'', which
+correspond to the identification of the text span (i.e. begin and end) and the
+assignment of a label to the text respectively. We can see NER task perfectly
+fits into the UIMA framework.
+
+\item Named entities correspond to the atomic elements in text, which are not
+necessarily single tokens (those you finally print out to the console from
+Homework 0). Many times, named entities can correspond to several consecutive
+tokens, and many tokens may not be part of named entities.
+
+\item NER plays a very crucial role in not only information extraction, but in
+all the text analysis related task, e.g. information retrieval and question
+answering. In the next homework, you will find NER can help you better identify
+the key words in the query and documents, retrieve synonyms more accurately, and
+thus relevant document more effectively.
+ 
+\end{enumerate}
