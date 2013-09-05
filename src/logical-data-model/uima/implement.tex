@@ -1,15 +1,13 @@
 
-\section{Adding descriptors and codes for your name entity recognizer}
+\section{Adding a type system descriptor and Java classes for your pipeline}
 
-If you have one or several idea(s) for the Gene Mention tagging task already,
-it's time to implement all of them in this task. You will find the official
-tutorial is helpful for you to accomplish this task. Except that you are
-required to build your component based on UIMA framework, there is little
-limitation on how you should design and implement your type system as well as
-all the pipeline components. Nevertheless, there are still some suggestions (or
-you can say tips or our expectations) to consider.
-
-\subsection{Type system}
+If you have one or several idea(s) for the sample information processing task
+already, it's time to implement all of them in this task. You will find the
+official tutorial is helpful for you to accomplish this task. Except that you
+are required to build your component based on UIMA framework, there is little
+limitation on how you should design and implement your type system.
+Nevertheless, there are still some suggestions (or you can say tips or our
+expectations) to consider.
 
 \begin{enumerate}
 
@@ -32,113 +30,12 @@ of the categories.
 where an annotation was originally made by, and how confidence the annotation
 was. All other types then inherit from this base annotation type.
 
-\item You could assign a (or several) name space(s) for your types, e.g., instead
-of \texttt{Sentence} (default name space), you could name it
+\item You could assign a (or several) name space(s) for your types, e.g.,
+instead of \texttt{Sentence} (default name space), you could name it
 \texttt{model.Sentence} (a type with name space \texttt{model}). Once you click
 the \textbf{JCasGen} button, you will find a nice hierarchical folder structure
 created under \texttt{src/main/java} for the Java classes corresponding to the
-types.
-
-\end{enumerate}
-
-\subsection{Collection processing engine}
-
-\begin{enumerate}
-
-\item You can use UML to help you and us clarify your pipeline design. You could
-include some UML diagrams in the Javadocs and in your report.
-
-\item You can refer to the \texttt{SimpeRunCPE.java} in the uima-example package
-(and we also included it in the archetype) as the entry point to test your
-pipeline once you have done all the implementations.
-
-\item The UIMA Eclipse plug-in has not provided a GUI for you to specify the CPE
-descriptor yet, which means although it will not be complicated, you still need to
-manually create the CPE descriptor all by yourself.
-
-\item \textbf{Please name your CPE descriptor as CpeDescriptor.xml and put it
-under \texttt{src/main/resources/}}, so that we could easily find the entry point
-of your pipeline and locate all your component descriptors and thus your
-component implementations.
-
-\end{enumerate}
-
-\subsection{Collection reader}
-
-\begin{enumerate}
-
-\item Since your pipeline is required to take an arbitrary file (with the same
-format as \texttt{sample.in}) as input, you should define a configuration
-parameter for the input file path in the collection reader. It could be
-``src/main/resources/data/sample.in'' (without quotes) for your own test, but
-\textbf{in your final submission, please put ``hw1.in'' (without quotes) as the
-value for the parameter}, which is the path of the file used to test your
-pipeline.
-
-\item Ideally, depending on where the input file is located (on a local file
-system, in a jar file, or from an external sources, e.g. network), your
-collection reader needs to be general enough to establish a connection to the
-file source and open a stream to read the content. But for our task, you only
-need to consider a file located on the file system, which means the basic
-\texttt{FileInputStream} and \texttt{FileReader} will do the work.
-
-\end{enumerate}
-
-\subsection{Cas consumer}
-
-\begin{enumerate}
-  
-\item Please refer to a prior section to find out the expected output format.
-
-\item Similar to the collection reader, you should define a configuration
-parameter for the output file path. \textbf{Please name it as ``hw1-ID.out''
-(without quotes) in your final submission, where ID is again your Andrew ID},
-and then your cas consumer will write the output file to the project root
-directly.
-
-\item You could create multiple views for a CAS, e.g., one for all the input
-elements, and one for all the intermediate results, and one for the final
-annotations, then your cas consumer can read the document ID from the first
-view, and the annotations from the last view to produce the output file. If you
-don't do it in this way, then you should probably include the document ID as a
-feature in all the intermediate types and final annotation type.
-
-\item You can also consider your evaluators (which can be
-Precision/Recall/F-measure, etc.) as cas consumers in your preliminary
-experiments.
-
-\end{enumerate}
-
-\subsection{Annotator}
-
-\begin{enumerate}
-
-\item If you want to employ a resource (e.g., a model you trained offline) in
-your annotator, you could consider UIMA's \emph{resource manager} (refer to the
-official tutorial for details about this).
-Be sure to put your resource in \texttt{src/main/resources} so that your
-submission will also bundle those resources along with your codes.
-
-\item \textbf{If you want to incorporate other NLP or machine learning tools,
-please try to avoid non-Java packages. If you want to dependent your artifact on
-other Java packages other than those provided by the archetype but can be found
-in the course repository, you can add a Maven dependency for this artifact, if
-you have the jar package on your machine, but it doesn't exist in the course
-repository, please let us know, we will try to deploy them in a 3rd party
-repository.}
-
-\item Remember to add comments and Javadocs to your annotators, we will also
-evaluate the quality of your codes.
-
-\item The most creative ideas will happen in the intermediate annotators. We
-have mentioned some possible solutions to do this. You can try and implement
-multiple approaches, and annotate the gene mentions for the sentence multiple
-times. All the annotations should be kept in the CAS until a final ``merging''
-component takes all the annotations and make a final judgment.
-
-You can use the type's \emph{source} feature to identify, among all the
-approaches, which annotator is attributed this annotation, and \emph{confidence}
-feature as a weight to vote for a final decision. This approach was also applied
-in IBM's Watson system.
+types. We also recommend to follow the same naming convention for your artifact
+groups, Java packages, and type paths.
 
 \end{enumerate}
