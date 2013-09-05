@@ -1,0 +1,23 @@
+\section{Input}
+
+
+The input to the pipeline is a test element (text file), e.g.:
+
+\begin{verbatim}
+Q John loves Mary?
+A 1 John loves Mary with all his heart.
+A 1 Mary is dearly loved by John.
+A 0 Mary doesn't love John.
+A 0 John doesn't love Mary.
+A 1 John loves Mary.
+\end{verbatim}
+
+Each line in the file is either the
+question or a candidate answer.
+
+Questions are of the form: Q \textless question\textgreater.
+
+Answers are of the form: A \textless isCorrect\textgreater ~\textless answer\textgreater.
+For \textless isCorrect\textgreater, `1' indicates the answer is correct, and `0' means not.
+
+ 

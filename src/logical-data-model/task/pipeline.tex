@@ -1,0 +1,20 @@
+\section{The Processing Pipeline}
+
+
+The information processing pipeline will consist of the following steps:
+
+\begin{enumerate}
+  \item {\bfseries Test Element Annotation}: The system will read in the input file as a UIMA CAS
+and annotate the question and answer spans. Each answer annotation will also
+record whether or not the answer is correct. 
+\item {\bfseries Token Annotation}: The system will annotate each token span in each question
+and answer (break on whitespace and punctuation). 
+\item {\bfseries NGram Annotation}: The system will annotate 1-, 2- and 3-grams of consecutive
+tokens. 
+\item {\bfseries Answer Scoring}: The system will incorporate a component that will assign an
+answer score annotation to each answer. The answer score annotation will record
+the score assigned to the answer. 
+\item {\bfseries Evaluation}: The system will sort the answers according to their scores, and
+calculate precision at N (where N is the total number of correct answers).
+\end{enumerate}
+
