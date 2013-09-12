@@ -4,17 +4,19 @@
 You are required to use the type system we included in the archetype to
 accomplish this homework. However, if your implementation needs additional data
 models (or UIMA types) to store intermediate data, you can also extend the type
-system on your own. You need to implement a collection processing engine that
-contains a collection reader that reads the inputs, several analysis engines
-that annotate the inputs (combined in an aggregate analysis engine), and a cas
-consumer that evaluates the performance of the aggregate analysis engine by
+system on your own. 
+You need to implement an aggregated analysis engine (hw2-ID-aae.xml) with several analysis engines
+that annotate the inputs and evaluate the performance of the aggregate analysis engine by
 comparing the system outputs with the gold-standard outputs.
 
-We will evaluate your implementation by feeding in unseen inputs via a different
-collection reader, executing your \emph{aggregated analysis engine (hw2-ID-aae.xml)} to annotate
-the inputs, and comparing the outputs from your system with our gold-standard
-outputs in our cas consumer.
+We will evaluate your implementation by feeding in unseen inputs and execute your 
+\emph{aggregated analysis engine (hw2-ID-aae.xml)}.
 
+You can test your aggregated analysis engine by running the UIMA Document Analyzer 
+\url{http://uima.apache.org/d/uimaj-2.4.0/tools.html#ugr.tools.doc_analyzer}. 
+We provided an Eclipse run configuration in hw2's archetype run\_configuration\/UIMA Document Analyzer.launch. 
+
+~\\
 Here are some suggestions to consider.
 
 \begin{enumerate}
