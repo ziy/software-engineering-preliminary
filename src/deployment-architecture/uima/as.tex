@@ -64,16 +64,11 @@ endpoint: ScnlpQueue
 You are required to integrate the \textbf {Name Entity} annotations from the Stanford CoreNLP service into your answer scoring component, 
 and compare the accuracy and the speed with your pipeline in homework 2.  
 
-There will be bonus points: 
-1) if you can run a Stanford CoreNLP annotator locally, and compare the speed with the remote one;
-2) if you can incorporate other annotations such as POS-tagging, lemma, and parsing. 
-
-
 
 \section{Deploying your own UIMA-AS service}
 
-In this task, you are going to deploy your aggregate analysis engine in homework 2 on your own machine, 
-and also call service locally.  
+In this task, you are going to deploy your aggregate analysis engine in Homework 2 on your own machine, 
+and also call the service locally.  
 \begin{enumerate}
   \item You need to first create a deployment descriptor (hw2-ID-aae-deploy.xml)
 for your aggregate analysis engine (hw2-ID-aae.xml);
@@ -85,13 +80,19 @@ for your aggregate analysis engine (hw2-ID-aae.xml);
 Tips: If you are going to deploy your service with UIMA-AS command line tools, 
 the maven plugins dependency:copy-dependencies or jar-with-dependencies might help you set up UIMA\_CLASSPATH.
 
-\section{Bonus: Creating additional UIMA-AS service}
-If you can deploy other tools (e.g. Semantic role labeling) as UIMA-AS service and 
-can be called by your classmates, there will be bonus points.  
+\section{Bonus}
 
-You can form a team of one or two (you can find you teammate on Piazza) to deploy and test your tools between different machines. 
-If you did this sucessfully, please let TAs know. 
-We are glad to deploy your tools on our servers and share with the whole class. 
+There will be bonus points, if you can: 
+\begin{enumerate}
+  \item run a Stanford CoreNLP annotator locally, and compare the speed with the remote one;
+  \item incorporate other annotations from Stanford CoreNLP such as POS-tagging, lemma, and parsing;
+  \item create additional UIMA-AS service, that deploy other tools (e.g. Semantic role labeling) as service and 
+can be called by your classmates. You can form a team of one or two (you can find you teammate on Piazza!) 
+	to deploy and test your tools between different machines. 
+If you did this successfully, please let TAs know. 
+We are glad to deploy your tools on our servers and share with the whole class.
+\end{enumerate}
+  
 
 
 \section{Writing up your report}
