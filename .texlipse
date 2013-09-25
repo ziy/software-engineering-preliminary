@@ -1,8 +1,8 @@
 #TeXlipse project settings
-#Tue Oct 02 22:21:25 EDT 2012
+#Mon Sep 23 15:20:46 EDT 2013
 markTmpDer=true
 builderNum=7
-outputDir=build/logical-architecture/
+outputDir=build/deployment-architecture/
 makeIndSty=
 bibrefDir=
 outputFormat=pdf
@@ -11,4 +11,4 @@ mainTexFile=main.tex
 outputFile=main.pdf
 langSpell=en
 markDer=true
-srcDir=src/logical-architecture/
+srcDir=src/deployment-architecture/

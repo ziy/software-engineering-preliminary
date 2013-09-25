@@ -1,0 +1,102 @@
+
+\chapter{Deployment Architecture with UIMA-AS}
+
+
+In this task, you will need to learn what UIMA-AS is and how to use it.
+You are required to integrate a remote UIMA-AS service (Stanford CoreNLP) 
+into your CPE pipeline, and deploy your aggregate analysis engine in homework 2 
+as an UIMA-AS service.  
+
+
+\section{Learning UIMA-AS}
+
+There are several useful resources to help you get started with UIMA-AS:
+\begin{itemize}
+  \item You can learn basic concepts about UIMA-AS from 
+				\emph{Getting Started: Apache UIMA Asynchronous Scaleout} 
+				(\url{http://uima.apache.org/doc-uimaas-what.html}). 
+	\item Once you downloaded UIMA AS binary package, you will find the README file 
+	   (\url{http://svn.apache.org/viewvc/uima/uima-as/tags/uima-as-2.4.0/README?view=co}) 
+	   contains practical guides for setup and running UIMA-AS tools. 
+	   \item Also, you can view the detailed reference manual for UIMA-AS 
+	   (\url{http://uima.apache.org/d/uima-as-2.4.0/uima_async_scaleout.html}).
+\end{itemize}
+
+ 
+
+\section{Creating an UIMA-AS client}
+
+Based on what you learned above, you need to create an UIMA-AS client descriptor (scnlp-ID-client.xml) 
+for a remote UIMA-AS service (Stanford CoreNLP), and integrate your client with your CPE pipeline.  
+
+The UIMA-AS service we provided for this homework is the 
+Stanford CoreNLP \footnote{\url{http://nlp.stanford.edu/software/corenlp.shtml}} Annotator 
+from ClearTK toolkit \footnote{\url{https://code.google.com/p/cleartk/}}. 
+This annotator reads the DocumentText from JCas and do 
+ tokenization, sentence splitting (required by most Annotators), POS tagging, 
+ lemmatization, NER, syntactic parsing, and coreference resolution.
+ The source code of this annotator is available to view online 
+ at \url{https://code.google.com/p/cleartk/source/browse/cleartk-stanford-corenlp/src/main/java/org/cleartk/stanford/StanfordCoreNLPAnnotator.java}.
+ You may also be interested in ClearTK's type system 
+ \url{https://code.google.com/p/cleartk/source/browse/cleartk-type-system/src/main/resources/org/cleartk/TypeSystem.xml}.
+
+To call and use this service, you need to import dependencies of 
+cleartk-stanford-corenlp and uimaj-as-activemq to your maven project:
+\begin{lstlisting}[frame=single, numbers=none]  
+	<dependency>
+		<groupId>org.cleartk</groupId>
+		<artifactId>cleartk-stanford-corenlp</artifactId>
+		<version>0.8.0</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.uima</groupId>
+		<artifactId>uimaj-as-activemq</artifactId>
+		<version>2.4.0</version>
+	</dependency>
+\end{lstlisting}
+
+Finally, the UIMA-AS service for this homework has following metadata:
+\begin{lstlisting}[frame=single, numbers=none]  
+brokerURL: tcp://mu.lti.cs.cmu.edu:61616
+endpoint: ScnlpQueue
+\end{lstlisting}
+
+You are required to integrate the \textbf {Name Entity} annotations from the Stanford CoreNLP service into your answer scoring component, 
+and compare the accuracy and the speed with your pipeline in homework 2.  
+
+There will be bonus points: 
+1) if you can run a Stanford CoreNLP annotator locally, and compare the speed with the remote one;
+2) if you can incorporate other annotations such as POS-tagging, lemma, and parsing. 
+
+
+
+\section{Deploying your own UIMA-AS service}
+
+In this task, you are going to deploy your aggregate analysis engine in homework 2 on your own machine, 
+and also call service locally.  
+\begin{enumerate}
+  \item You need to first create a deployment descriptor (hw2-ID-aae-deploy.xml)
+for your aggregate analysis engine (hw2-ID-aae.xml);
+\item Start a UIMA-AS broker locally, and deploy your service to your local broker;
+\item Create a client descriptor (hw2-ID-aae-client.xml) for your service;
+\item Create a CPE descriptor (hw3-ID-aae-as-CPE.xml) to test your service by calling the client.  
+\end{enumerate}
+
+Tips: If you are going to deploy your service with UIMA-AS command line tools, 
+the maven plugins dependency:copy-dependencies or jar-with-dependencies might help you set up UIMA\_CLASSPATH.
+
+\section{Bonus: Creating additional UIMA-AS service}
+If you can deploy other tools (e.g. Semantic role labeling) as UIMA-AS service and 
+can be called by your classmates, there will be bonus points.  
+
+You can form a team of one or two (you can find you teammate on Piazza) to deploy and test your tools between different machines. 
+If you did this sucessfully, please let TAs know. 
+We are glad to deploy your tools on our servers and share with the whole class. 
+
+
+\section{Writing up your report}
+
+We expect you to highlight the features of your design and your system, evaluation results, and comparison.
+Finally, don't forget to put your name and Andrew ID at the top of the document, name the
+file as ``hw3-ID-report.pdf'' and put it under \texttt{src/main/resources/docs}.
+

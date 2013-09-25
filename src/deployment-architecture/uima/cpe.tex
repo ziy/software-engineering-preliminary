@@ -1,0 +1,39 @@
+
+\chapter{Execution Architecture with CPE}
+
+
+In this task, you will need to learn what CPE is and how to use it.
+You are required to run your pipeline with Collection Processing Engine (CPE) instead of UIMA Document Analyzer. 
+
+\section{Learning CPE}
+
+There are several useful resources to help you get started with CPE:
+\begin{itemize}
+  \item You can learn basic concepts and usage about CPE from 
+				\emph{Chapter 2. Collection Processing Engine Developer's Guide} 
+				(\url{http://uima.apache.org/d/uimaj-2.4.0/tutorials_and_users_guides.html#ugr.tug.cpe}). 
+	   \item Also, you can view the manual for CPE GUI 
+	   (\url{http://uima.apache.org/d/uimaj-2.4.0/tools.html#ugr.tools.cpe}).
+\end{itemize}
+
+\section{Creating and Running your CPE}
+
+\begin{enumerate}
+
+\item Ideally, depending on where the input file is located (on a local file
+system, in a jar file, or from an external sources, e.g. network), your
+collection reader needs to be general enough to establish a connection to the
+file source and open a stream to read the content. But for our task, you only
+need to consider a folder of files located on the file system, which means 
+you can use org.apache.uima.tools.components.FileSystemCollectionReader directly, 
+and only need to write a Collection Reader descriptor to fit your needs.  
+
+\item You are required to create a Cas Consumer based on the Evaluator component of homework 2, 
+and include it in your CPE pipeline.
+
+\item Please name your CPE descriptor as hw3-ID-CPE.xml and put it
+under \texttt{src/main/resources/}, so that we could easily find the entry point
+of your pipeline.
+
+ 
+\end{enumerate}
